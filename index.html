@@ -103,7 +103,7 @@
             overflow: hidden;
         }
         .announcement-bar {
-            background: #2c3e50;
+            background: var(--black);
             color: var(--white);
             padding: 10px 20px;
             text-align: center;
@@ -209,11 +209,14 @@
         /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 700px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            margin-top: 0;
+            padding-top: 140px;
         }
         .hero-bg {
             position: absolute;
@@ -221,7 +224,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--black) 0%, var(--black-soft) 50%, var(--black) 100%);
+            background: transparent;
         }
         .hero-pattern {
             position: absolute;
@@ -231,28 +234,28 @@
             height: 100%;
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23A8A9AD' fill-opacity='1'%3E%3Cpath d='M30 30l15-15v30L30 30zm0 0L15 15v30l15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 2;
         }
         .hero-image-container {
             position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 45%;
-            height: 70%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
-            border-radius: 0;
+            z-index: 0;
             opacity: 0;
             animation: heroImageReveal 1.5s var(--transition-smooth) 0.5s forwards;
         }
         @keyframes heroImageReveal {
-            0% { opacity: 0; clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
-            100% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         .hero-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.9) contrast(1.1);
+            filter: brightness(0.4) contrast(1.1);
         }
         .hero-image-overlay {
             position: absolute;
@@ -260,7 +263,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, var(--black) 0%, transparent 30%, transparent 70%, rgba(10,10,10,0.3) 100%);
+            background: linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.4) 100%);
         }
         .hero-content {
             position: relative;
@@ -980,13 +983,16 @@
             .mobile-toggle {
                 display: flex;
             }
+            .hero {
+                padding-top: 120px;
+            }
             .hero-content {
                 margin-left: 5%;
                 text-align: center;
                 margin-right: 5%;
             }
             .hero-image-container {
-                display: none;
+                display: block;
             }
             .about-banner {
                 grid-template-columns: 1fr;
@@ -1101,7 +1107,7 @@
         <div class="floating-diamond"></div>
         
         <div class="hero-image-container">
-            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="Luxury Jewellery" class="hero-image">
+            <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00265_BRI00280-copy.jpg" alt="Luxury Jewellery" class="hero-image">
             <div class="hero-image-overlay"></div>
         </div>
         
@@ -1131,7 +1137,7 @@
         </div>
         <div class="categories-grid">
             <div class="category-card reveal reveal-delay-1">
-                <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=600&q=80" alt="Rings" class="category-image">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00136_BRI00148-copy.jpg" alt="Rings" class="category-image">
                 <div class="category-overlay">
                     <h3 class="category-name">Rings</h3>
                     <a href="#" class="category-link">
@@ -1143,7 +1149,7 @@
                 </div>
             </div>
             <div class="category-card reveal reveal-delay-2">
-                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80" alt="Necklaces" class="category-image">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00182_BRI00193-copy.jpg" alt="Necklaces" class="category-image">
                 <div class="category-overlay">
                     <h3 class="category-name">Necklaces</h3>
                     <a href="#" class="category-link">
@@ -1155,7 +1161,7 @@
                 </div>
             </div>
             <div class="category-card reveal reveal-delay-3">
-                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80" alt="Earrings" class="category-image">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00306_BRI00318-copy.jpg" alt="Earrings" class="category-image">
                 <div class="category-overlay">
                     <h3 class="category-name">Earrings</h3>
                     <a href="#" class="category-link">
@@ -1167,7 +1173,7 @@
                 </div>
             </div>
             <div class="category-card reveal reveal-delay-4">
-                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Bracelets" class="category-image">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00321_BRI00334-copy.jpg" alt="Bracelets" class="category-image">
                 <div class="category-overlay">
                     <h3 class="category-name">Bracelets</h3>
                     <a href="#" class="category-link">
@@ -1191,7 +1197,7 @@
             <div class="product-card reveal reveal-delay-1">
                 <span class="product-badge">New</span>
                 <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond Ring" class="product-image">
+                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00352_BRI00365-copy.jpg" alt="Diamond Ring" class="product-image">
                     <div class="product-actions">
                         <button class="action-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1215,7 +1221,7 @@
             </div>
             <div class="product-card reveal reveal-delay-2">
                 <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&q=80" alt="Gold Necklace" class="product-image">
+                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00521_BRI00537-copy.jpg" alt="Gold Necklace" class="product-image">
                     <div class="product-actions">
                         <button class="action-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1240,7 +1246,7 @@
             <div class="product-card reveal reveal-delay-3">
                 <span class="product-badge">Bestseller</span>
                 <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80" alt="Pearl Earrings" class="product-image">
+                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00540_BRI00556-copy.jpg" alt="Pearl Earrings" class="product-image">
                     <div class="product-actions">
                         <button class="action-btn">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1268,7 +1274,7 @@
     <!-- About Banner -->
     <section class="about-banner">
         <div class="about-image reveal">
-            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80" alt="Craftsmanship">
+            <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/brady0411_dark_background_with_jewelry_glitter_and_a_pocket_kni_4c94117a-9e46-49cd-8eae-22cfb8c146de.png" alt="Craftsmanship">
         </div>
         <div class="about-content">
             <p class="section-subtitle reveal">Our Story</p>
