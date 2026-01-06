@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | ETR Jewellery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --black-light: #141414;
+            --black-soft: #1a1a1a;
+            --white: #f5f5f5;
+            --white-pure: #ffffff;
+            --silver: #c0c0c0;
+            --silver-light: #d4d4d4;
+            --gray: #6b6b6b;
+            --gray-light: #9a9a9a;
+            --gray-dark: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Rain Effect */
+        .rain-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .rain-drop {
+            position: absolute;
+            width: 1px;
+            height: 15px;
+            background: linear-gradient(180deg, transparent, rgba(192, 192, 192, 0.4), transparent);
+            animation: rainFall linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes rainFall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Sparkle Effect */
+        .sparkle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .sparkle-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--silver);
+            border-radius: 50%;
+            animation: sparkleFloat ease-in-out infinite;
+            box-shadow: 0 0 6px var(--silver), 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+            50% { opacity: 1; transform: scale(1) translateY(-20px); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(192, 192, 192, 0.1);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+        }
+
+        .nav-announcement {
+            background: linear-gradient(90deg, var(--silver) 0%, #e0e0e0 50%, var(--silver) 100%);
+            color: var(--black);
+            text-align: center;
+            padding: 6px 20px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 50px;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.15);
+        }
+
+        .nav-logo img {
+            height: 35px;
+            filter: invert(1) brightness(2);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 18px;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            stroke: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-icon:hover {
+            stroke: var(--silver);
+            filter: drop-shadow(0 0 5px rgba(192, 192, 192, 0.5));
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 10px 50px;
+            list-style: none;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--silver);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--silver);
+            text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 120px;
+            overflow: hidden;
+        }
+
+        .about-hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-flash {
+            position: absolute;
+            inset: 0;
+            background: var(--white-pure);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-glitch {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(192, 192, 192, 0.1) 50%,
+                transparent 100%
+            );
+            opacity: 0;
+        }
+
+        @keyframes heroFlash {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes heroGlitch {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        .about-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .about-hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid rgba(192,192,192,0.4);
+            border-radius: 50px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 30px;
+        }
+
+        .about-hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 6vw, 70px);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .about-hero-title em {
+            font-style: italic;
+            color: var(--silver);
+        }
+
+        .about-hero-desc {
+            font-size: 18px;
+            color: var(--gray-light);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 100px 50px;
+            background: var(--black);
+        }
+
+        .story-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-image {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(192, 192, 192, 0.2);
+            pointer-events: none;
+        }
+
+        .story-content {
+            padding: 20px 0;
+        }
+
+        .story-eyebrow {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .story-eyebrow::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--silver);
+        }
+
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .story-title em {
+            font-style: italic;
+            color: var(--silver);
+        }
+
+        .story-text {
+            font-size: 16px;
+            color: var(--gray-light);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .story-text:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* Values Section */
+        .values {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #3a3a3a 50%, #2d2d2d 75%, #1a1a1a 100%);
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .values-eyebrow {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 15px;
+        }
+
+        .values-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 400;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(192, 192, 192, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            border-color: rgba(192, 192, 192, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            stroke: var(--silver);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .value-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .value-desc {
+            font-size: 14px;
+            color: var(--gray-light);
+            line-height: 1.8;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 50px;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .cta-title em {
+            font-style: italic;
+            color: var(--silver);
+        }
+
+        .cta-desc {
+            font-size: 16px;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 45px;
+            background: var(--silver);
+            color: var(--black);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: var(--white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            padding: 60px 50px 30px;
+            border-top: 1px solid rgba(192,192,192,0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            filter: invert(1) brightness(2);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--silver);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(192,192,192,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--silver);
+            border-color: var(--silver);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--white);
+            transition: fill 0.3s;
+        }
+
+        .footer-social a:hover svg {
+            fill: var(--black);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(192,192,192,0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-menu { display: none; }
+            .story-container { grid-template-columns: 1fr; gap: 40px; }
+            .values-grid { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { flex-direction: column; gap: 30px; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-main { padding: 10px 25px; }
+            .story, .values, .cta { padding: 60px 25px; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Rain Effect -->
+    <div class="rain-container" id="rainContainer"></div>
+
+    <!-- Sparkle Effect -->
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-announcement">
+            Rest Easy with Our 12-Month Warranty
+        </div>
+        <div class="nav-main">
+            <a href="index.html" class="nav-logo">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/etr-jewellery/logo/preview.png" alt="ETR Jewellery">
+            </a>
+            <div class="nav-icons">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 01-8 0"/>
+                </svg>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Watches</a></li>
+            <li><a href="#">Jewellery</a></li>
+            <li><a href="#">Grillz</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-bg" id="heroSlideshow">
+            <div class="hero-slideshow">
+                <div class="hero-slide active">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/990e804e-b18f-437e-2d19-49bbeb437800/public" alt="ETR Jewellery">
+                </div>
+                <div class="hero-slide">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/3c1eab0a-5a23-4de2-1634-f2c3f3d79000/public" alt="ETR Jewellery">
+                </div>
+                <div class="hero-slide">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7a2943c5-c1b9-4c34-2bc8-ae80db845e00/public" alt="ETR Jewellery">
+                </div>
+                <div class="hero-slide">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7ea408bd-3010-4e54-7b2c-c33a18547600/public" alt="ETR Jewellery">
+                </div>
+            </div>
+            <div class="hero-flash" id="heroFlash"></div>
+            <div class="hero-glitch" id="heroGlitch"></div>
+        </div>
+        <div class="about-hero-content">
+            <div class="about-hero-badge">Our Story</div>
+            <h1 class="about-hero-title">About <em>ETR</em> Jewellery</h1>
+            <p class="about-hero-desc">Crafting premium custom jewellery for those who demand excellence. Trust the process, trust ETR.</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+        <div class="story-container">
+            <div class="story-image">
+                <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7ea408bd-3010-4e54-7b2c-c33a18547600/public" alt="ETR Craftsmanship">
+            </div>
+            <div class="story-content">
+                <p class="story-eyebrow">Our Story</p>
+                <h2 class="story-title">Built on <em>Passion</em> & Precision</h2>
+                <p class="story-text">ETR Jewellery was born from a passion for urban culture and an unwavering commitment to quality. We saw a gap in the market for premium custom jewellery that didn't compromise on craftsmanship or authenticity.</p>
+                <p class="story-text">Every piece we create tells a story. From VVS diamond grillz fitted to perfection, to iced out timepieces that command attention - we pour our expertise into every detail. Our clients aren't just customers; they're part of the ETR family.</p>
+                <p class="story-text">Trust the process isn't just our slogan - it's our philosophy. We take the time to understand your vision, source the finest materials, and deliver pieces that exceed expectations. That's the ETR way.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="values-header">
+            <p class="values-eyebrow">What We Stand For</p>
+            <h2 class="values-title">Our Values</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <svg class="value-icon" viewBox="0 0 24 24">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <h3 class="value-title">Quality First</h3>
+                <p class="value-desc">We never compromise on materials or craftsmanship. Every piece meets our exacting standards before it reaches you.</p>
+            </div>
+            <div class="value-card">
+                <svg class="value-icon" viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <h3 class="value-title">Authenticity</h3>
+                <p class="value-desc">Real ice, real gold, real craftsmanship. We keep it 100% authentic in everything we do.</p>
+            </div>
+            <div class="value-card">
+                <svg class="value-icon" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <h3 class="value-title">Customer Focus</h3>
+                <p class="value-desc">Your vision is our mission. We work closely with every client to bring their dream pieces to life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/3c1eab0a-5a23-4de2-1634-f2c3f3d79000/public" alt="ETR Jewellery">
+        </div>
+        <div class="gallery-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/cca0e8a3-f519-4bbe-c069-55a0b3981800/public" alt="ETR Chains">
+        </div>
+        <div class="gallery-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7a2943c5-c1b9-4c34-2bc8-ae80db845e00/public" alt="ETR Jewellery">
+        </div>
+        <div class="gallery-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/c9a684ec-3849-4c07-41f9-5aeebe58ef00/public" alt="ETR Grillz">
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Get <em>Iced</em>?</h2>
+            <p class="cta-desc">Browse our collection or get in touch to discuss your custom piece. Let's create something extraordinary together.</p>
+            <a href="index.html" class="cta-btn">
+                Shop Collection
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="index.html" class="footer-logo">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/etr-jewellery/logo/preview.png" alt="ETR Jewellery">
+            </a>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+            <div class="footer-social">
+                <a href="https://instagram.com/etrjewellers" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://wa.me/2LF225ET2SWBM1" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ETR Jewellery. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

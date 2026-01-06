@@ -29,7 +29,7 @@
             position: fixed;
             inset: 0;
             background: var(--black);
-            z-index: 9999;
+            z-index: 99999;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -329,74 +329,97 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            background: var(--white-pure);
-            transition: box-shadow 0.3s ease;
+            z-index: 10000;
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(192, 192, 192, 0.1);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
         }
 
         .nav.scrolled {
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7), 0 0 50px rgba(192, 192, 192, 0.15);
         }
 
         .nav-announcement {
-            background: var(--black);
-            color: var(--silver);
+            background: linear-gradient(90deg, var(--silver) 0%, #e0e0e0 50%, var(--silver) 100%);
+            color: var(--black);
             text-align: center;
-            padding: 10px 20px;
-            font-size: 12px;
+            padding: 6px 20px;
+            font-size: 11px;
             letter-spacing: 2px;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .nav-main {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 50px;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 10px 50px;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.15);
         }
 
         .nav-logo img {
-            height: 50px;
+            height: 35px;
+            filter: invert(1) brightness(2);
         }
 
         .nav-icons {
             display: flex;
-            gap: 20px;
+            gap: 18px;
         }
 
         .nav-icon {
-            width: 22px;
-            height: 22px;
-            stroke: var(--black);
+            width: 20px;
+            height: 20px;
+            stroke: var(--white);
             cursor: pointer;
-            transition: stroke 0.3s;
+            transition: all 0.3s;
         }
 
         .nav-icon:hover {
-            stroke: var(--gray);
+            stroke: var(--silver);
+            filter: drop-shadow(0 0 5px rgba(192, 192, 192, 0.5));
         }
 
         .nav-menu {
             display: flex;
             justify-content: center;
             gap: 50px;
-            padding: 15px 50px;
+            padding: 10px 50px;
             list-style: none;
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .nav-menu a {
-            color: var(--black);
+            color: var(--white);
             text-decoration: none;
             font-size: 11px;
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--silver);
+            transition: width 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: var(--gray);
+            color: var(--silver);
+            text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
@@ -985,6 +1008,15 @@
             overflow: hidden;
             cursor: pointer;
             backface-visibility: hidden;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        .category-card:nth-child(2) { animation-delay: 0.5s; }
+        .category-card:nth-child(3) { animation-delay: 1s; }
+        .category-card:nth-child(4) { animation-delay: 1.5s; }
+
+        .category-card:hover {
+            animation: none;
         }
 
         .category-card img {
@@ -1096,6 +1128,39 @@
             .featured-video-wrapper {
                 margin: 0 auto;
             }
+        }
+
+        /* Mosaic Gallery */
+        .mosaic-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 0;
+        }
+
+        .mosaic-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mosaic-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .mosaic-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .mosaic-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .mosaic-item:nth-child(5) {
+            grid-column: span 2;
         }
 
         /* Reviews Section */
@@ -1562,8 +1627,8 @@
             <li><a href="#">Watches</a></li>
             <li><a href="#">Jewellery</a></li>
             <li><a href="#">Grillz</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
         </ul>
     </nav>
 
@@ -1639,7 +1704,7 @@
                         <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7ea408bd-3010-4e54-7b2c-c33a18547600/public" alt="ETR Jewellery">
                     </div>
                     <div class="about-slide">
-                        <img src="phttps://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/cca0e8a3-f519-4bbe-c069-55a0b3981800/public" alt="ETR Chains">
+                        <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/cca0e8a3-f519-4bbe-c069-55a0b3981800/public" alt="ETR Chains">
                     </div>
                     <div class="about-slide">
                         <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/c9a684ec-3849-4c07-41f9-5aeebe58ef00/public" alt="ETR Grillz">
@@ -1821,6 +1886,31 @@
             </div>
         </div>
     </section>
+
+    <!-- Mosaic Gallery -->
+    <div class="mosaic-gallery">
+        <div class="mosaic-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/990e804e-b18f-437e-2d19-49bbeb437800/public" alt="ETR Jewellery">
+        </div>
+        <div class="mosaic-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/3c1eab0a-5a23-4de2-1634-f2c3f3d79000/public" alt="ETR Jewellery">
+        </div>
+        <div class="mosaic-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7ea408bd-3010-4e54-7b2c-c33a18547600/public" alt="ETR Jewellery">
+        </div>
+        <div class="mosaic-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7a2943c5-c1b9-4c34-2bc8-ae80db845e00/public" alt="ETR Jewellery">
+        </div>
+        <div class="mosaic-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/cca0e8a3-f519-4bbe-c069-55a0b3981800/public" alt="ETR Chains">
+        </div>
+        <div class="mosaic-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/bc0b0aac-f0e2-4d0d-4fbf-7945cbb62600/public" alt="ETR Jewellery">
+        </div>
+        <div class="mosaic-item">
+            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/c9a684ec-3849-4c07-41f9-5aeebe58ef00/public" alt="ETR Grillz">
+        </div>
+    </div>
 
     <!-- Featured Video -->
     <section class="featured-video">
