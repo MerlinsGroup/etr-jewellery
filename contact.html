@@ -551,10 +551,77 @@
             color: var(--gray);
         }
 
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10001;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--black);
+            z-index: 9999;
+            padding: 120px 40px 40px;
+            flex-direction: column;
+            gap: 0;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--silver);
+            padding-left: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .nav-main { padding: 15px 25px; }
             .nav-menu { display: none; }
+            .mobile-toggle { display: flex; }
             .page-header {
                 padding: 150px 40px 60px;
             }
@@ -617,6 +684,11 @@
                     <line x1="3" y1="6" x2="21" y2="6"/>
                     <path d="M16 10a4 4 0 01-8 0"/>
                 </svg>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
         <ul class="nav-menu">
@@ -627,6 +699,16 @@
             <li><a href="about.html">About</a></li>
         </ul>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="#">Watches</a>
+        <a href="#">Jewellery</a>
+        <a href="#">Grillz</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+    </div>
 
     <!-- Page Header -->
     <section class="page-header">
@@ -876,6 +958,25 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
         // Navbar scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
