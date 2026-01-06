@@ -796,5 +796,60 @@
             <p>&copy; 2024 ETR Jewellery. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Hero Slideshow with Flash Effect
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroFlash = document.getElementById('heroFlash');
+        const heroGlitch = document.getElementById('heroGlitch');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            // Flash effect
+            heroFlash.style.animation = 'heroFlash 0.15s ease-out';
+            heroGlitch.style.animation = 'heroGlitch 0.2s ease-out';
+
+            setTimeout(() => {
+                heroSlides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % heroSlides.length;
+                heroSlides[currentSlide].classList.add('active');
+
+                heroFlash.style.animation = 'none';
+                heroGlitch.style.animation = 'none';
+            }, 75);
+        }
+
+        setInterval(nextSlide, 1200);
+
+        // Rain Effect Generator
+        const rainContainer = document.getElementById('rainContainer');
+        const rainDropCount = 50;
+
+        for (let i = 0; i < rainDropCount; i++) {
+            const drop = document.createElement('div');
+            drop.className = 'rain-drop';
+            drop.style.left = Math.random() * 100 + '%';
+            drop.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+            drop.style.animationDelay = Math.random() * 3 + 's';
+            drop.style.height = (Math.random() * 15 + 10) + 'px';
+            rainContainer.appendChild(drop);
+        }
+
+        // Sparkle/Glitter Effect Generator
+        const sparkleContainer = document.getElementById('sparkleContainer');
+        const sparkleCount = 25;
+
+        for (let i = 0; i < sparkleCount; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle-particle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            sparkle.style.animationDelay = Math.random() * 5 + 's';
+            sparkle.style.width = (Math.random() * 3 + 2) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            sparkleContainer.appendChild(sparkle);
+        }
+    </script>
 </body>
 </html>
