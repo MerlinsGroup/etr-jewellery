@@ -24,10 +24,288 @@
             --white-pure: #ffffff;
         }
 
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-watch {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+
+        .watch-face {
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--silver);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 30px rgba(192, 192, 192, 0.3), inset 0 0 20px rgba(192, 192, 192, 0.1);
+        }
+
+        .watch-face::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: var(--silver);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--silver);
+        }
+
+        .watch-hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            background: var(--silver);
+            border-radius: 2px;
+        }
+
+        .watch-hand.hour {
+            width: 4px;
+            height: 25px;
+            margin-left: -2px;
+            animation: rotateHour 3s linear infinite;
+        }
+
+        .watch-hand.minute {
+            width: 3px;
+            height: 35px;
+            margin-left: -1.5px;
+            animation: rotateMinute 1.5s linear infinite;
+        }
+
+        .watch-hand.second {
+            width: 1px;
+            height: 45px;
+            margin-left: -0.5px;
+            background: var(--silver-light);
+            animation: rotateSecond 1s linear infinite;
+        }
+
+        .watch-hand.second::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: var(--silver);
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes rotateHour {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateMinute {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateSecond {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            margin-top: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--silver);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .loader-diamonds {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .loader-diamond {
+            width: 8px;
+            height: 8px;
+            background: var(--silver);
+            transform: rotate(45deg);
+            animation: diamondPulse 1.2s ease-in-out infinite;
+        }
+
+        .loader-diamond:nth-child(2) { animation-delay: 0.2s; }
+        .loader-diamond:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes diamondPulse {
+            0%, 100% { opacity: 0.3; transform: rotate(45deg) scale(0.8); }
+            50% { opacity: 1; transform: rotate(45deg) scale(1.2); box-shadow: 0 0 15px var(--silver); }
+        }
+
+        /* Diamond Sparkle Effect */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .sparkle::before,
+        .sparkle::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(45deg, transparent 40%, var(--silver) 50%, transparent 60%);
+        }
+
+        .sparkle::before {
+            width: 20px;
+            height: 2px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .sparkle::after {
+            width: 2px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Floating diamonds decoration */
+        .diamond-float {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--silver) 0%, var(--silver-light) 50%, var(--silver) 100%);
+            transform: rotate(45deg);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .diamond-float:nth-child(1) {
+            top: 15%;
+            left: 5%;
+            animation: floatDiamond 8s ease-in-out infinite;
+        }
+
+        .diamond-float:nth-child(2) {
+            top: 25%;
+            right: 8%;
+            width: 6px;
+            height: 6px;
+            animation: floatDiamond 6s ease-in-out infinite reverse;
+        }
+
+        .diamond-float:nth-child(3) {
+            top: 60%;
+            left: 3%;
+            width: 8px;
+            height: 8px;
+            animation: floatDiamond 10s ease-in-out infinite;
+        }
+
+        .diamond-float:nth-child(4) {
+            top: 75%;
+            right: 4%;
+            animation: floatDiamond 7s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatDiamond {
+            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.15; }
+            50% { transform: rotate(45deg) translateY(-20px); opacity: 0.3; }
+        }
+
+        /* Rain Effect */
+        .rain-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .rain-drop {
+            position: absolute;
+            width: 1px;
+            height: 15px;
+            background: linear-gradient(180deg, transparent, rgba(192, 192, 192, 0.4), transparent);
+            animation: rainFall linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes rainFall {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle/Glitter Effect */
+        .sparkle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .sparkle-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--silver);
+            border-radius: 50%;
+            animation: sparkleFloat ease-in-out infinite;
+            box-shadow: 0 0 6px var(--silver), 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) translateY(-20px);
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: auto;
         }
 
         body {
@@ -36,6 +314,8 @@
             color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Scrollbar */
@@ -141,7 +421,96 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.3);
+        }
+
+        .hero-slideshow {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-slide.bw img {
+            filter: grayscale(100%);
+        }
+
+        .hero-flash {
+            position: absolute;
+            inset: 0;
+            background: var(--white-pure);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-glitch {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(192, 192, 192, 0.1) 50%,
+                transparent 100%
+            );
+            opacity: 0;
+        }
+
+        @keyframes heroFlash {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes heroGlitch {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        @keyframes rgbSplit {
+            0%, 100% {
+                text-shadow: none;
+                filter: none;
+            }
+            25% {
+                text-shadow: -2px 0 #ff0000, 2px 0 #00ffff;
+                filter: blur(0.5px);
+            }
+            50% {
+                text-shadow: 2px 0 #ff0000, -2px 0 #00ffff;
+                filter: blur(0);
+            }
+            75% {
+                text-shadow: -1px 0 #ff0000, 1px 0 #00ffff;
+                filter: blur(0.3px);
+            }
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2;
         }
 
         .hero-content {
@@ -234,6 +603,258 @@
             letter-spacing: 1px;
         }
 
+        /* About Section */
+        .about {
+            background: var(--black);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .about-video {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-slideshow {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .about-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        .about-slide.active {
+            opacity: 1;
+        }
+
+        .about-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-video::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 70%, var(--black) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Flash overlay effect */
+        .flash-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--white-pure);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: overlay;
+        }
+
+        @keyframes flashEffect {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Glitch effect */
+        .glitch-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        @keyframes glitchEffect {
+            0%, 100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0);
+                opacity: 0;
+            }
+            20% {
+                clip-path: inset(20% 0 60% 0);
+                transform: translate(-5px, 0);
+                opacity: 1;
+            }
+            40% {
+                clip-path: inset(40% 0 30% 0);
+                transform: translate(5px, 0);
+                opacity: 1;
+            }
+            60% {
+                clip-path: inset(70% 0 10% 0);
+                transform: translate(-3px, 0);
+                opacity: 1;
+            }
+            80% {
+                clip-path: inset(10% 0 80% 0);
+                transform: translate(3px, 0);
+                opacity: 0.5;
+            }
+        }
+
+        /* Scanline effect */
+        .scanline-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px 80px 40px;
+            position: relative;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background: linear-gradient(180deg, transparent, var(--silver), transparent);
+        }
+
+        .about-eyebrow {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .about-eyebrow::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--silver);
+        }
+
+        .about-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 400;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-title em {
+            font-style: italic;
+            color: var(--silver);
+        }
+
+        .about-desc {
+            font-size: 15px;
+            color: var(--gray-light);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 480px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .about-feature-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--black-light);
+            border: 1px solid var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .about-feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--silver);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .about-feature-text h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--white);
+        }
+
+        .about-feature-text p {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .about-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 35px;
+            background: transparent;
+            border: 1px solid var(--silver);
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            width: fit-content;
+        }
+
+        .about-cta:hover {
+            background: var(--silver);
+            color: var(--black);
+        }
+
+        .about-cta svg {
+            transition: transform 0.3s;
+        }
+
+        .about-cta:hover svg {
+            transform: translateX(5px);
+        }
+
         /* Section Styles */
         section {
             padding: 100px 50px;
@@ -272,7 +893,9 @@
         .drop-card {
             background: var(--black-light);
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease-out;
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         .drop-card:hover {
@@ -289,11 +912,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.4s ease-out;
+            will-change: transform;
         }
 
         .drop-card:hover .drop-image img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .drop-badge {
@@ -349,19 +973,32 @@
             aspect-ratio: 3/4;
             overflow: hidden;
             cursor: pointer;
+            backface-visibility: hidden;
         }
 
         .category-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.6);
-            transition: all 0.5s;
+            transition: transform 0.4s ease-out;
+            will-change: transform;
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            transition: background 0.4s ease-out;
+            pointer-events: none;
         }
 
         .category-card:hover img {
-            transform: scale(1.1);
-            filter: brightness(0.4);
+            transform: scale(1.05);
+        }
+
+        .category-card:hover::after {
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .category-overlay {
@@ -396,6 +1033,58 @@
         .category-card:hover .category-link {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Featured Video Section */
+        .featured-video {
+            background: var(--black-soft);
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .featured-video-wrapper {
+            position: relative;
+            border: 1px solid var(--gray-dark);
+            width: 200px;
+        }
+
+        .featured-video-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .featured-video-content h3 em {
+            font-style: italic;
+            color: var(--silver);
+        }
+
+        .featured-video-content p {
+            font-size: 14px;
+            color: var(--gray-light);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .featured-video-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .featured-video-wrapper {
+                margin: 0 auto;
+            }
         }
 
         /* Reviews Section */
@@ -508,6 +1197,7 @@
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
+            border: 2px solid var(--silver);
         }
 
         .celeb-image img {
@@ -535,6 +1225,24 @@
             color: var(--silver);
         }
 
+        /* Reveal Animations - GPU Accelerated */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s !important; }
+        .reveal-delay-2 { transition-delay: 0.15s !important; }
+        .reveal-delay-3 { transition-delay: 0.2s !important; }
+        .reveal-delay-4 { transition-delay: 0.25s !important; }
+
         /* Articles Section */
         .articles {
             background: var(--black-soft);
@@ -549,7 +1257,9 @@
         .article-card {
             background: var(--black-light);
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease-out;
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         .article-card:hover {
@@ -565,11 +1275,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform 0.4s ease-out;
+            will-change: transform;
         }
 
         .article-card:hover .article-image img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .article-content {
@@ -769,6 +1480,12 @@
                 grid-template-columns: 1fr;
             }
             .trust-grid { gap: 40px; }
+            .about-container { grid-template-columns: 1fr; }
+            .about-video { min-height: 350px; }
+            .about-video::after { background: linear-gradient(180deg, transparent 60%, var(--black) 100%); }
+            .about-content { padding: 60px 30px; }
+            .about-content::before { display: none; }
+            .about-features { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
             .newsletter-form { flex-direction: column; }
@@ -776,6 +1493,35 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-watch">
+            <div class="watch-face">
+                <div class="watch-hand hour"></div>
+                <div class="watch-hand minute"></div>
+                <div class="watch-hand second"></div>
+            </div>
+        </div>
+        <p class="loader-text">ETR Jewellery</p>
+        <div class="loader-diamonds">
+            <div class="loader-diamond"></div>
+            <div class="loader-diamond"></div>
+            <div class="loader-diamond"></div>
+        </div>
+    </div>
+
+    <!-- Rain Effect -->
+    <div class="rain-container" id="rainContainer"></div>
+
+    <!-- Sparkle Effect -->
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <!-- Floating Diamond Decorations -->
+    <div class="diamond-float"></div>
+    <div class="diamond-float"></div>
+    <div class="diamond-float"></div>
+    <div class="diamond-float"></div>
+
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-announcement">
@@ -804,16 +1550,31 @@
         <ul class="nav-menu">
             <li><a href="#">Watches</a></li>
             <li><a href="#">Jewellery</a></li>
-            <li><a href="#">Custom Jewellery</a></li>
-            <li><a href="#">Merch</a></li>
+            <li><a href="#">Grillz</a></li>
+            <li><a href="#">Contact</a></li>
             <li><a href="#">About</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg">
-            <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00265_BRI00280-copy.jpg" alt="ETR Jewellery">
+        <div class="hero-bg" id="heroSlideshow">
+            <div class="hero-slideshow">
+                <div class="hero-slide active">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/990e804e-b18f-437e-2d19-49bbeb437800/public" alt="ETR Jewellery">
+                </div>
+                <div class="hero-slide">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/3c1eab0a-5a23-4de2-1634-f2c3f3d79000/public" alt="ETR Jewellery">
+                </div>
+                <div class="hero-slide">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7a2943c5-c1b9-4c34-2bc8-ae80db845e00/public" alt="ETR Jewellery">
+                </div>
+                <div class="hero-slide bw">
+                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/bc0b0aac-f0e2-4d0d-4fbf-7945cbb62600/public" alt="ETR Jewellery">
+                </div>
+            </div>
+            <div class="hero-flash" id="heroFlash"></div>
+            <div class="hero-glitch" id="heroGlitch"></div>
         </div>
         <div class="hero-content">
             <div class="hero-badge">Grillz - Jewellery - Watches</div>
@@ -831,7 +1592,7 @@
     <!-- Trust Banner -->
     <section class="trust-banner">
         <div class="trust-grid">
-            <div class="trust-item">
+            <div class="trust-item reveal reveal-delay-1">
                 <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <rect x="1" y="3" width="15" height="13"/>
                     <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
@@ -840,7 +1601,7 @@
                 </svg>
                 <h4>Reliable Delivery</h4>
             </div>
-            <div class="trust-item">
+            <div class="trust-item reveal reveal-delay-2">
                 <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
                     <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
@@ -848,7 +1609,7 @@
                 </svg>
                 <h4>Transparent Returns</h4>
             </div>
-            <div class="trust-item">
+            <div class="trust-item reveal reveal-delay-3">
                 <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                     <path d="M7 11V7a5 5 0 0110 0v4"/>
@@ -858,17 +1619,98 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-container">
+            <div class="about-video" id="aboutSlideshow">
+                <div class="about-slideshow">
+                    <div class="about-slide active">
+                        <img src="pics2/pexels-magapls-2149937712-31890010.jpg" alt="ETR Jewellery">
+                    </div>
+                    <div class="about-slide">
+                        <img src="pics2/pexels-oyeshothis-2152098681-32578337.jpg" alt="ETR Chains">
+                    </div>
+                    <div class="about-slide">
+                        <img src="pics2/pexels-picturesbyamusan-6337270.jpg" alt="ETR Grillz">
+                    </div>
+                </div>
+                <div class="flash-overlay" id="flashOverlay"></div>
+                <div class="glitch-overlay" id="glitchOverlay"></div>
+                <div class="scanline-overlay"></div>
+            </div>
+            <div class="about-content reveal">
+                <p class="about-eyebrow">About ETR</p>
+                <h2 class="about-title">Crafting <em>Excellence</em> in Every Piece</h2>
+                <p class="about-desc">ETR Jewellery is your destination for premium custom grillz, iced out chains, statement pendants, and luxury watches. We bring the culture of urban jewellery to those who demand quality, authenticity, and that ice-cold drip.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </div>
+                        <div class="about-feature-text">
+                            <h4>Custom Grillz</h4>
+                            <p>VVS diamond & gold grillz made to your exact mould</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="about-feature-text">
+                            <h4>Luxury Watches</h4>
+                            <p>Iced out timepieces from AP to Rolex</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                                <circle cx="12" cy="12" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="about-feature-text">
+                            <h4>Iced Chains</h4>
+                            <p>Cuban links, tennis chains & rope chains</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+                            </svg>
+                        </div>
+                        <div class="about-feature-text">
+                            <h4>Custom Pendants</h4>
+                            <p>Bespoke designs that tell your story</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="about-cta">
+                    Explore Collection
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Latest Drops -->
     <section class="latest-drops">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow">New Arrivals</p>
             <h2 class="section-title">Latest Drops</h2>
         </div>
         <div class="drops-grid">
-            <div class="drop-card">
+            <div class="drop-card reveal reveal-delay-1">
                 <div class="drop-image">
                     <span class="drop-badge">New</span>
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00352_BRI00365-copy.jpg" alt="Diamond Grillz">
+                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/a8b5cc42-ca28-4ba6-3360-8c99c58ac200/public" alt="Diamond Grillz">
                 </div>
                 <div class="drop-info">
                     <p class="drop-category">Grillz</p>
@@ -876,10 +1718,10 @@
                     <p class="drop-price">From £450.00</p>
                 </div>
             </div>
-            <div class="drop-card">
+            <div class="drop-card reveal reveal-delay-2">
                 <div class="drop-image">
                     <span class="drop-badge">Hot</span>
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00521_BRI00537-copy.jpg" alt="Cuban Chain">
+                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/f1ea3b55-3add-42f0-8199-ef582b5f1500/public" alt="Cuban Chain">
                 </div>
                 <div class="drop-info">
                     <p class="drop-category">Chains</p>
@@ -887,9 +1729,9 @@
                     <p class="drop-price">From £890.00</p>
                 </div>
             </div>
-            <div class="drop-card">
+            <div class="drop-card reveal reveal-delay-3">
                 <div class="drop-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00540_BRI00556-copy.jpg" alt="Custom Pendant">
+                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/b512033b-d1bb-4938-20db-d08d5cd79400/public" alt="Custom Pendant">
                 </div>
                 <div class="drop-info">
                     <p class="drop-category">Pendants</p>
@@ -897,10 +1739,10 @@
                     <p class="drop-price">From £650.00</p>
                 </div>
             </div>
-            <div class="drop-card">
+            <div class="drop-card reveal reveal-delay-4">
                 <div class="drop-image">
                     <span class="drop-badge">Limited</span>
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00321_BRI00334-copy.jpg" alt="Luxury Watch">
+                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7eb60943-c7bc-4730-990a-4316e6e8b100/public" alt="Luxury Watch">
                 </div>
                 <div class="drop-info">
                     <p class="drop-category">Watches</p>
@@ -913,13 +1755,13 @@
 
     <!-- Categories -->
     <section class="categories">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow">Shop By</p>
             <h2 class="section-title">Categories</h2>
         </div>
         <div class="categories-grid">
-            <div class="category-card">
-                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00136_BRI00148-copy.jpg" alt="Grillz">
+            <div class="category-card reveal reveal-delay-1">
+                <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00136_BRI00148-copy.jpg" alt="Grillz"> -->
                 <div class="category-overlay">
                     <h3 class="category-name">Grillz</h3>
                     <a href="#" class="category-link">
@@ -930,8 +1772,8 @@
                     </a>
                 </div>
             </div>
-            <div class="category-card">
-                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00182_BRI00193-copy.jpg" alt="Chains">
+            <div class="category-card reveal reveal-delay-2">
+                <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00182_BRI00193-copy.jpg" alt="Chains"> -->
                 <div class="category-overlay">
                     <h3 class="category-name">Chains</h3>
                     <a href="#" class="category-link">
@@ -942,8 +1784,8 @@
                     </a>
                 </div>
             </div>
-            <div class="category-card">
-                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00306_BRI00318-copy.jpg" alt="Pendants">
+            <div class="category-card reveal reveal-delay-3">
+                <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00306_BRI00318-copy.jpg" alt="Pendants"> -->
                 <div class="category-overlay">
                     <h3 class="category-name">Pendants</h3>
                     <a href="#" class="category-link">
@@ -954,8 +1796,8 @@
                     </a>
                 </div>
             </div>
-            <div class="category-card">
-                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00321_BRI00334-copy.jpg" alt="Watches">
+            <div class="category-card reveal reveal-delay-4">
+                <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00321_BRI00334-copy.jpg" alt="Watches"> -->
                 <div class="category-overlay">
                     <h3 class="category-name">Watches</h3>
                     <a href="#" class="category-link">
@@ -969,13 +1811,34 @@
         </div>
     </section>
 
+    <!-- Featured Video -->
+    <section class="featured-video">
+        <div class="featured-video-container reveal">
+            <div class="featured-video-wrapper">
+                <div style="position: relative; padding-top: 179.31034482758622%;">
+                    <iframe
+                        src="https://customer-w3eshzf2kramnqvl.cloudflarestream.com/4fe95af2a7e3797c88632517a5ed18a7/iframe?autoplay=true&loop=true&muted=true&poster=https%3A%2F%2Fcustomer-w3eshzf2kramnqvl.cloudflarestream.com%2F4fe95af2a7e3797c88632517a5ed18a7%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+                        loading="lazy"
+                        style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+                        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                        allowfullscreen="true"
+                    ></iframe>
+                </div>
+            </div>
+            <div class="featured-video-content">
+                <h3>The <em>ETR</em> Way</h3>
+                <p>At ETR, we're more than just jewellery. We're a lifestyle. Every piece we create tells a story of craftsmanship, authenticity, and that unmistakable drip. From custom grillz fitted to perfection to iced out timepieces that demand attention - we deliver excellence, every time.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Reviews Section -->
     <section class="reviews">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow">Customer Love</p>
             <h2 class="section-title">What Our Clients Say</h2>
         </div>
-        <div class="reviews-slider">
+        <div class="reviews-slider reveal">
             <div class="review-card">
                 <div class="review-stars">
                     <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1049,14 +1912,14 @@
 
     <!-- Celebrities Section -->
     <section class="celebrities">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow">Trusted By</p>
             <h2 class="section-title">Who Rocks ETR</h2>
         </div>
         <div class="celebrities-grid">
-            <div class="celeb-card">
+            <div class="celeb-card reveal reveal-delay-1">
                 <div class="celeb-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00092_BRI00114-copy.jpg" alt="Artist">
+                    <!-- <img loading="lazy" src="https://i1.sndcdn.com/avatars-vIwQxmxZyPgPjsgy-Y1QJLQ-t500x500.jpg" alt="SavNDO"> -->
                 </div>
                 <div class="celeb-info">
                     <h4>SavNDO</h4>
@@ -1064,9 +1927,9 @@
                     <span class="celeb-quote">"That looks cold!"</span>
                 </div>
             </div>
-            <div class="celeb-card">
+            <div class="celeb-card reveal reveal-delay-2">
                 <div class="celeb-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00115_BRI00135-copy.jpg" alt="Artist">
+                    <!-- <img loading="lazy" src="https://i.scdn.co/image/ab6761610000e5eb0c68f6c95232e716f0abee8d" alt="Berna"> -->
                 </div>
                 <div class="celeb-info">
                     <h4>Berna</h4>
@@ -1074,9 +1937,9 @@
                     <span class="celeb-quote">"ETR never miss!"</span>
                 </div>
             </div>
-            <div class="celeb-card">
+            <div class="celeb-card reveal reveal-delay-3">
                 <div class="celeb-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00243_BRI00264-copy.jpg" alt="Artist">
+                    <!-- <img loading="lazy" src="https://i.scdn.co/image/ab6761610000e5eb05f513db51758ee0732b0c7a" alt="Lil Sykes"> -->
                 </div>
                 <div class="celeb-info">
                     <h4>Lil Sykes</h4>
@@ -1084,9 +1947,9 @@
                     <span class="celeb-quote">"It's crazy bro, my God"</span>
                 </div>
             </div>
-            <div class="celeb-card">
+            <div class="celeb-card reveal reveal-delay-4">
                 <div class="celeb-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00291_BRI00305-copy.jpg" alt="Artist">
+                    <!-- <img loading="lazy" src="https://i.scdn.co/image/ab6761610000e5eb8a1cebf946f1b9d6a35e8b0a" alt="Pak Man"> -->
                 </div>
                 <div class="celeb-info">
                     <h4>Pak Man</h4>
@@ -1099,14 +1962,14 @@
 
     <!-- Articles Section -->
     <section class="articles">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow">Knowledge</p>
             <h2 class="section-title">Guides & Articles</h2>
         </div>
         <div class="articles-grid">
-            <article class="article-card">
+            <article class="article-card reveal reveal-delay-1">
                 <div class="article-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00352_BRI00365-copy.jpg" alt="Grillz Guide">
+                    <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00352_BRI00365-copy.jpg" alt="Grillz Guide"> -->
                 </div>
                 <div class="article-content">
                     <p class="article-tag">Guide</p>
@@ -1114,9 +1977,9 @@
                     <p class="article-excerpt">Everything you need to know about getting your first set of custom grillz, from materials to fitting.</p>
                 </div>
             </article>
-            <article class="article-card">
+            <article class="article-card reveal reveal-delay-2">
                 <div class="article-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00321_BRI00334-copy.jpg" alt="Watch Guide">
+                    <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00321_BRI00334-copy.jpg" alt="Watch Guide"> -->
                 </div>
                 <div class="article-content">
                     <p class="article-tag">Watches</p>
@@ -1124,9 +1987,9 @@
                     <p class="article-excerpt">Learn the key signs that separate genuine luxury timepieces from fakes.</p>
                 </div>
             </article>
-            <article class="article-card">
+            <article class="article-card reveal reveal-delay-3">
                 <div class="article-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00521_BRI00537-copy.jpg" alt="Chain Care">
+                    <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00521_BRI00537-copy.jpg" alt="Chain Care"> -->
                 </div>
                 <div class="article-content">
                     <p class="article-tag">Care</p>
@@ -1134,9 +1997,9 @@
                     <p class="article-excerpt">Tips and tricks to keep your chains, pendants and grillz looking fresh for years.</p>
                 </div>
             </article>
-            <article class="article-card">
+            <article class="article-card reveal reveal-delay-4">
                 <div class="article-image">
-                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00540_BRI00556-copy.jpg" alt="Diamond Facts">
+                    <!-- <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/hero/BRI00540_BRI00556-copy.jpg" alt="Diamond Facts"> -->
                 </div>
                 <div class="article-content">
                     <p class="article-tag">Education</p>
@@ -1149,7 +2012,7 @@
 
     <!-- Newsletter -->
     <section class="newsletter">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow">Stay Updated</p>
             <h2 class="section-title">Join the ETR Family</h2>
         </div>
@@ -1213,11 +2076,169 @@
     </footer>
 
     <script>
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 2000);
+        });
+
         // Nav scroll effect
         const nav = document.getElementById('nav');
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    nav.classList.toggle('scrolled', window.scrollY > 50);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }, { passive: true });
+
+        // Optimized scroll reveal with IntersectionObserver
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px 50px 0px',
+            threshold: 0.1
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // About section image slideshow with flash effects
+        const slides = document.querySelectorAll('.about-slide');
+        const flashOverlay = document.getElementById('flashOverlay');
+        const glitchOverlay = document.getElementById('glitchOverlay');
+        let currentSlide = 0;
+
+        function triggerFlash() {
+            flashOverlay.style.animation = 'flashEffect 0.15s ease-out';
+            setTimeout(() => {
+                flashOverlay.style.animation = '';
+            }, 150);
+        }
+
+        function triggerGlitch() {
+            if (Math.random() > 0.5) {
+                glitchOverlay.style.animation = 'glitchEffect 0.3s ease-out';
+                setTimeout(() => {
+                    glitchOverlay.style.animation = '';
+                }, 300);
+            }
+        }
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            // Random flash effect on transition
+            if (Math.random() > 0.3) {
+                triggerFlash();
+            }
+            triggerGlitch();
+
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slides every 2.5 seconds with effects
+        setInterval(nextSlide, 2500);
+
+        // Random micro-flashes for extra effect
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                flashOverlay.style.opacity = '0.3';
+                setTimeout(() => {
+                    flashOverlay.style.opacity = '0';
+                }, 50);
+            }
+        }, 800);
+
+        // Hero section image slideshow with flash effects
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroFlash = document.getElementById('heroFlash');
+        const heroGlitch = document.getElementById('heroGlitch');
+        let currentHeroSlide = 0;
+
+        function triggerHeroFlash() {
+            heroFlash.style.animation = 'heroFlash 0.2s ease-out';
+            setTimeout(() => {
+                heroFlash.style.animation = '';
+            }, 200);
+        }
+
+        function triggerHeroGlitch() {
+            if (Math.random() > 0.4) {
+                heroGlitch.style.animation = 'heroGlitch 0.4s ease-out';
+                setTimeout(() => {
+                    heroGlitch.style.animation = '';
+                }, 400);
+            }
+        }
+
+        function nextHeroSlide() {
+            heroSlides[currentHeroSlide].classList.remove('active');
+            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+
+            // Flash effect on transition
+            if (Math.random() > 0.25) {
+                triggerHeroFlash();
+            }
+            triggerHeroGlitch();
+
+            heroSlides[currentHeroSlide].classList.add('active');
+        }
+
+        // Change hero slides every 3 seconds with effects
+        setInterval(nextHeroSlide, 3000);
+
+        // Random subtle flashes for hero
+        setInterval(() => {
+            if (Math.random() > 0.75) {
+                heroFlash.style.opacity = '0.4';
+                setTimeout(() => {
+                    heroFlash.style.opacity = '0';
+                }, 60);
+            }
+        }, 1200);
+
+        // Rain Effect Generator
+        const rainContainer = document.getElementById('rainContainer');
+        const rainDropCount = 50;
+
+        for (let i = 0; i < rainDropCount; i++) {
+            const drop = document.createElement('div');
+            drop.className = 'rain-drop';
+            drop.style.left = Math.random() * 100 + '%';
+            drop.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+            drop.style.animationDelay = Math.random() * 3 + 's';
+            drop.style.height = (Math.random() * 15 + 10) + 'px';
+            rainContainer.appendChild(drop);
+        }
+
+        // Sparkle/Glitter Effect Generator
+        const sparkleContainer = document.getElementById('sparkleContainer');
+        const sparkleCount = 25;
+
+        for (let i = 0; i < sparkleCount; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle-particle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            sparkle.style.animationDelay = Math.random() * 5 + 's';
+            sparkle.style.width = (Math.random() * 3 + 2) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            sparkleContainer.appendChild(sparkle);
+        }
     </script>
 </body>
 </html>
