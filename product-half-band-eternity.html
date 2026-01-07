@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Half Band Eternity Ring | ETR Jewellery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --black: #0a0a0a; --black-light: #141414; --black-soft: #1a1a1a; --gray-dark: #2a2a2a; --gray: #666; --gray-light: #999; --silver: #c0c0c0; --silver-light: #d4d4d4; --white: #f5f5f5; --white-pure: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--black); } ::-webkit-scrollbar-thumb { background: var(--silver); border-radius: 3px; }
+        .nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 10000; background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); border-bottom: 1px solid rgba(192, 192, 192, 0.2); }
+        .nav-announcement { background: linear-gradient(90deg, var(--silver) 0%, #e0e0e0 50%, var(--silver) 100%); color: var(--black); text-align: center; padding: 6px 20px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+        .nav-main { display: flex; align-items: center; justify-content: space-between; padding: 10px 50px; border-bottom: 1px solid rgba(192, 192, 192, 0.15); }
+        .nav-logo img { height: 35px; filter: invert(1) brightness(2); }
+        .nav-icons { display: flex; gap: 18px; }
+        .nav-icon { width: 20px; height: 20px; stroke: var(--white); cursor: pointer; transition: all 0.3s; }
+        .nav-icon:hover { stroke: var(--silver); }
+        .nav-menu { display: flex; justify-content: center; gap: 50px; padding: 10px 50px; list-style: none; background: rgba(0, 0, 0, 0.3); }
+        .nav-menu a { color: var(--white); text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; position: relative; }
+        .nav-menu a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: var(--silver); transition: width 0.3s ease; }
+        .nav-menu a:hover { color: var(--silver); } .nav-menu a:hover::after { width: 100%; }
+        .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; z-index: 10001; }
+        .mobile-toggle span { width: 24px; height: 2px; background: var(--white); transition: all 0.3s ease; }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--black); z-index: 9999; padding: 120px 40px 40px; flex-direction: column; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 18px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 20px 0; border-bottom: 1px solid rgba(192, 192, 192, 0.2); transition: all 0.3s ease; }
+        .mobile-menu a:hover { color: var(--silver); padding-left: 10px; }
+        .breadcrumb { padding: 140px 50px 20px; font-size: 13px; color: var(--gray-light); }
+        .breadcrumb a { color: var(--gray-light); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: var(--silver); text-decoration: underline; }
+        .breadcrumb span { margin: 0 10px; color: var(--gray); }
+        .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 20px 50px 80px; max-width: 1400px; margin: 0 auto; }
+        .product-gallery { position: sticky; top: 150px; height: fit-content; }
+        .gallery-main { position: relative; aspect-ratio: 1; background: var(--black-light); border: 1px solid var(--gray-dark); overflow: hidden; margin-bottom: 15px; }
+        .gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .gallery-main:hover img { transform: scale(1.05); }
+        .image-updating-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .image-updating-text { color: var(--silver); font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-align: center; padding: 15px 25px; border: 1px solid var(--silver); background: rgba(0, 0, 0, 0.5); }
+        .gallery-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 45px; height: 45px; background: var(--white); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 3; }
+        .gallery-nav:hover { background: var(--silver); transform: translateY(-50%) scale(1.1); }
+        .gallery-nav svg { width: 20px; height: 20px; stroke: var(--black); }
+        .gallery-nav.prev { left: 15px; } .gallery-nav.next { right: 15px; }
+        .gallery-thumbs { display: flex; gap: 10px; }
+        .gallery-thumb { width: 80px; height: 80px; background: var(--black-light); border: 2px solid transparent; cursor: pointer; transition: all 0.3s; overflow: hidden; }
+        .gallery-thumb:hover, .gallery-thumb.active { border-color: var(--silver); }
+        .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .product-info { padding-top: 20px; }
+        .product-price { font-size: 36px; font-weight: 600; margin-bottom: 8px; }
+        .product-tax { font-size: 13px; color: var(--gray); margin-bottom: 20px; }
+        .product-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; margin-bottom: 15px; line-height: 1.3; }
+        .product-seller { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--gray-dark); }
+        .seller-name { font-weight: 600; color: var(--white); }
+        .stars { color: var(--silver); font-size: 14px; }
+        .local-seller { font-size: 12px; color: var(--gray-light); display: flex; align-items: center; gap: 5px; }
+        .local-seller svg { width: 14px; height: 14px; fill: var(--gray-light); }
+        .dispatch-info { margin-bottom: 25px; }
+        .dispatch-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 14px; }
+        .dispatch-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+        .dispatch-item.location svg { fill: var(--gray-light); }
+        .dispatch-item.delivery { color: #4ade80; }
+        .dispatch-item.delivery svg { stroke: #4ade80; fill: none; }
+        .variant-section { margin-bottom: 20px; }
+        .variant-label { font-size: 14px; font-weight: 500; margin-bottom: 10px; color: var(--white); }
+        .variant-select { width: 100%; padding: 15px 20px; background: var(--black-soft); border: 1px solid var(--gray-dark); color: var(--white); font-size: 15px; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.3s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 20px center; }
+        .variant-select:hover, .variant-select:focus { border-color: var(--silver); outline: none; }
+        .add-to-basket { width: 100%; padding: 18px 30px; background: var(--black); color: var(--white); font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s; margin-bottom: 30px; text-decoration: none; display: block; text-align: center; }
+        .add-to-basket:hover { background: var(--silver); color: var(--black); }
+        .item-details { border-top: 1px solid var(--gray-dark); }
+        .details-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; cursor: pointer; transition: color 0.3s; }
+        .details-header:hover { color: var(--silver); }
+        .details-header h3 { font-size: 16px; font-weight: 500; }
+        .details-header svg { width: 20px; height: 20px; stroke: currentColor; transition: transform 0.3s; }
+        .details-header.open svg { transform: rotate(180deg); }
+        .details-content { display: none; padding-bottom: 25px; }
+        .details-content.open { display: block; }
+        .highlights { margin-bottom: 20px; }
+        .highlights h4 { font-size: 14px; font-weight: 600; margin-bottom: 15px; color: var(--white); }
+        .highlight-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 14px; color: var(--gray-light); }
+        .highlight-item svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+        .highlight-item.location svg { fill: var(--gray-light); }
+        .highlight-item.materials svg { fill: var(--silver); }
+        .highlight-item.gemstone svg { fill: var(--silver); }
+        .product-description { font-size: 14px; line-height: 1.8; color: var(--gray-light); }
+        .product-description p { margin-bottom: 15px; }
+        .footer { background: var(--black-light); padding: 80px 50px 40px; border-top: 1px solid rgba(192,192,192,0.1); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .footer-brand img { height: 50px; margin-bottom: 20px; }
+        .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.8; margin-bottom: 25px; }
+        .footer-social { display: flex; gap: 15px; }
+        .footer-social a { width: 40px; height: 40px; border: 1px solid rgba(192,192,192,0.3); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .footer-social a:hover { background: var(--silver); border-color: var(--silver); }
+        .footer-social svg { width: 18px; height: 18px; fill: var(--white); transition: fill 0.3s; }
+        .footer-social a:hover svg { fill: var(--black); }
+        .footer-column h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--silver); margin-bottom: 25px; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 12px; }
+        .footer-column a { color: var(--gray); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+        .footer-column a:hover { color: var(--silver); }
+        .footer-bottom { padding-top: 40px; border-top: 1px solid rgba(192,192,192,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .footer-bottom p { font-size: 12px; color: var(--gray); }
+        @media (max-width: 992px) { .nav-main { padding: 15px 25px; } .nav-menu { display: none; } .mobile-toggle { display: flex; } .breadcrumb { padding: 130px 25px 15px; } .product-detail { grid-template-columns: 1fr; padding: 20px 25px 60px; gap: 40px; } .product-gallery { position: relative; top: 0; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 768px) { .product-price { font-size: 28px; } .product-title { font-size: 22px; } .gallery-thumb { width: 60px; height: 60px; } .footer-grid { grid-template-columns: 1fr; gap: 40px; } .footer-bottom { flex-direction: column; gap: 20px; text-align: center; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-announcement">Rest Easy with Our 12-Month Warranty</div>
+        <div class="nav-main">
+            <a href="index.html" class="nav-logo"><img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/etr-jewellery/logo/preview.png" alt="ETR Jewellery"></a>
+            <div class="nav-icons">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <div class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="watches.html">Watches</a></li>
+            <li><a href="Jewellery.html">Jewellery</a></li>
+            <li><a href="customgrillz.html">Custom Grillz</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="watches.html">Watches</a>
+        <a href="Jewellery.html">Jewellery</a>
+        <a href="customgrillz.html">Custom Grillz</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+    </div>
+    <div class="breadcrumb">
+        <a href="index.html">Homepage</a><span>&gt;</span>
+        <a href="Jewellery.html">Jewellery</a><span>&gt;</span>
+        <a href="Jewellery.html">Rings</a><span>&gt;</span>Bands
+    </div>
+    <section class="product-detail">
+        <div class="product-gallery">
+            <div class="gallery-main">
+                <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
+                <img id="mainImage" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Half Band Eternity Ring">
+                <button class="gallery-nav prev" onclick="changeImage(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                <button class="gallery-nav next" onclick="changeImage(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+            </div>
+            <div class="gallery-thumbs">
+                <div class="gallery-thumb active" onclick="setImage(0)"><img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Thumb 1"></div>
+            </div>
+        </div>
+        <div class="product-info">
+            <p class="product-price">£850.00</p>
+            <p class="product-tax">Local taxes included (where applicable)</p>
+            <h1 class="product-title">9 Carat Rose/White/Yellow Gold Half Band "ETERNITY" Ring</h1>
+            <div class="product-seller">
+                <span class="seller-name">GRILLEDUP</span>
+                <div class="seller-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+                <span class="local-seller"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Local seller</span>
+            </div>
+            <div class="dispatch-info">
+                <div class="dispatch-item location"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Dispatched from United Kingdom</div>
+                <div class="dispatch-item delivery"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>FREE UK Delivery</div>
+            </div>
+            <div class="variant-section">
+                <p class="variant-label">Band colour</p>
+                <select class="variant-select" id="bandColour">
+                    <option value="">Select an option</option>
+                    <option value="rose-gold" data-link="https://buy.stripe.com/dRmeVd9sA9Ym59ZawNfMA0c">Rose gold</option>
+                    <option value="white" data-link="https://buy.stripe.com/bJe9AT6go0nM7i70WdfMA0d">White</option>
+                    <option value="yellow" data-link="https://buy.stripe.com/4gMeVdawEgmKgSH8oFfMA0e">Yellow</option>
+                </select>
+            </div>
+            <a href="#" class="add-to-basket" id="addToBasket">Add to basket</a>
+            <div class="item-details">
+                <div class="details-header open" onclick="toggleDetails(this)">
+                    <h3>Item details</h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+                </div>
+                <div class="details-content open">
+                    <div class="highlights">
+                        <h4>Highlights</h4>
+                        <div class="highlight-item location"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Delivery from a small business in <strong>United Kingdom</strong></div>
+                        <div class="highlight-item materials"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>Materials: Diamond, Gold, Rose gold, White gold, Yellow gold</span></div>
+                        <div class="highlight-item gemstone"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>Gemstone: VVS Diamond</span></div>
+                    </div>
+                    <div class="product-description">
+                        <p>Beautiful half band eternity ring in 9 carat gold. Timeless elegance with VVS stones that catch the light beautifully.</p>
+                        <p>The half band design offers comfort while showcasing stunning diamonds across the visible portion of the ring.</p>
+                        <p>Available in rose gold, white gold, and yellow gold. Comes with our 12-month warranty and FREE UK delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/etr-jewellery/logo/preview.png" alt="ETR Jewellery">
+                <p>Trust the process, trust ETR. Premium grillz, chains, pendants and watches. Quality you can see and feel.</p>
+                <div class="footer-social">
+                    <a href="https://instagram.com/etrjewellers"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    <a href="#"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+                    <a href="https://wa.me/2LF225ET2SWBM1"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-column"><h4>Shop</h4><ul><li><a href="#">Grillz</a></li><li><a href="#">Chains</a></li><li><a href="#">Pendants</a></li><li><a href="#">Watches</a></li><li><a href="Jewellery.html">Jewellery</a></li></ul></div>
+            <div class="footer-column"><h4>Help</h4><ul><li><a href="#">Shipping & Returns</a></li><li><a href="#">Size Guide</a></li><li><a href="#">Care Instructions</a></li><li><a href="#">FAQs</a></li><li><a href="#">Warranty</a></li></ul></div>
+            <div class="footer-column"><h4>Contact</h4><ul><li><a href="mailto:info@etrjewellers.com">info@etrjewellers.com</a></li><li><a href="https://wa.me/2LF225ET2SWBM1">WhatsApp</a></li><li><a href="https://instagram.com/etrjewellers">@etrjewellers</a></li><li><a href="#">London, UK</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 ETR Jewellery. All rights reserved.</p></div>
+    </footer>
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle'); const mobileMenu = document.getElementById('mobileMenu');
+        mobileToggle.addEventListener('click', () => { mobileToggle.classList.toggle('active'); mobileMenu.classList.toggle('active'); document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : ''; });
+        const images = ['https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public']; let currentImage = 0;
+        function setImage(index) { currentImage = index; document.getElementById('mainImage').src = images[index]; document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => { thumb.classList.toggle('active', i === index); }); }
+        function changeImage(direction) { currentImage = (currentImage + direction + images.length) % images.length; setImage(currentImage); }
+        function toggleDetails(header) { header.classList.toggle('open'); header.nextElementSibling.classList.toggle('open'); }
+        const bandColour = document.getElementById('bandColour'); const addToBasket = document.getElementById('addToBasket');
+        bandColour.addEventListener('change', function() { const selectedOption = this.options[this.selectedIndex]; const link = selectedOption.dataset.link; if (link) { addToBasket.href = link; } });
+        addToBasket.addEventListener('click', function(e) { if (!bandColour.value) { e.preventDefault(); alert('Please select a band colour before adding to basket.'); bandColour.focus(); } });
+    </script>
+</body>
+</html>

@@ -416,6 +416,29 @@
             transform: scale(1.05);
         }
 
+        /* Image Updating Overlay */
+        .image-updating-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .image-updating-text {
+            color: var(--silver);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 15px 25px;
+            border: 1px solid var(--silver);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
         .product-badge {
             position: absolute;
             top: 15px;
@@ -795,6 +818,7 @@
             <div class="product-card">
                 <div class="product-image">
                     <span class="product-badge">Hot</span>
+                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
                     <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Twin Baguette Ring">
                 </div>
                 <div class="product-info">
@@ -828,6 +852,7 @@
             <div class="product-card">
                 <div class="product-image">
                     <span class="product-badge">Premium</span>
+                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
                     <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Heartbreak Ring">
                 </div>
                 <div class="product-info">
@@ -860,6 +885,7 @@
             <!-- Product 4: Half Band Eternity -->
             <div class="product-card">
                 <div class="product-image">
+                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
                     <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Half Band Eternity Ring">
                 </div>
                 <div class="product-info">
@@ -893,6 +919,7 @@
             <div class="product-card">
                 <div class="product-image">
                     <span class="product-badge">Luxury</span>
+                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
                     <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Full Band Eternity Ring VVS">
                 </div>
                 <div class="product-info">
@@ -926,6 +953,7 @@
             <div class="product-card">
                 <div class="product-image">
                     <span class="product-badge">Best Value</span>
+                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
                     <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="925 Silver Eternity Ring">
                 </div>
                 <div class="product-info">
