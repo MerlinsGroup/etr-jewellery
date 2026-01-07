@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watches - Coming Soon | ETR Jewellery</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --black-light: #141414;
+            --black-soft: #1a1a1a;
+            --gray-dark: #2a2a2a;
+            --gray: #666;
+            --gray-light: #999;
+            --silver: #c0c0c0;
+            --silver-light: #d4d4d4;
+            --white: #f5f5f5;
+            --white-pure: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--silver); border-radius: 3px; }
+
+        /* Rain Effect */
+        .rain-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .rain-drop {
+            position: absolute;
+            width: 1px;
+            height: 15px;
+            background: linear-gradient(180deg, transparent, rgba(192, 192, 192, 0.4), transparent);
+            animation: rainFall linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes rainFall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Sparkle Effect */
+        .sparkle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .sparkle-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--silver);
+            border-radius: 50%;
+            animation: sparkleFloat ease-in-out infinite;
+            box-shadow: 0 0 6px var(--silver), 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { opacity: 0; transform: scale(0) translateY(0); }
+            50% { opacity: 1; transform: scale(1) translateY(-20px); }
+        }
+
+        /* Floating diamonds */
+        .diamond-float {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--silver) 0%, var(--silver-light) 50%, var(--silver) 100%);
+            transform: rotate(45deg);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .diamond-float:nth-child(1) { top: 15%; left: 5%; animation: floatDiamond 8s ease-in-out infinite; }
+        .diamond-float:nth-child(2) { top: 25%; right: 8%; width: 6px; height: 6px; animation: floatDiamond 6s ease-in-out infinite reverse; }
+        .diamond-float:nth-child(3) { top: 60%; left: 3%; width: 8px; height: 8px; animation: floatDiamond 10s ease-in-out infinite; }
+        .diamond-float:nth-child(4) { top: 75%; right: 4%; animation: floatDiamond 7s ease-in-out infinite reverse; }
+
+        @keyframes floatDiamond {
+            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.15; }
+            50% { transform: rotate(45deg) translateY(-20px); opacity: 0.3; }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(192, 192, 192, 0.1);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+        }
+
+        .nav.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7), 0 0 50px rgba(192, 192, 192, 0.15);
+        }
+
+        .nav-announcement {
+            background: linear-gradient(90deg, var(--silver) 0%, #e0e0e0 50%, var(--silver) 100%);
+            color: var(--black);
+            text-align: center;
+            padding: 6px 20px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 50px;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.15);
+        }
+
+        .nav-logo img {
+            height: 35px;
+            filter: invert(1) brightness(2);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 18px;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            stroke: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-icon:hover {
+            stroke: var(--silver);
+            filter: drop-shadow(0 0 5px rgba(192, 192, 192, 0.5));
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 10px 50px;
+            list-style: none;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--silver);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover { color: var(--silver); text-shadow: 0 0 10px rgba(192, 192, 192, 0.5); }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-menu a.active { color: var(--silver); }
+        .nav-menu a.active::after { width: 100%; }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10001;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--black);
+            z-index: 9999;
+            padding: 120px 40px 40px;
+            flex-direction: column;
+            gap: 0;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active { display: flex; }
+
+        .mobile-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover { color: var(--silver); padding-left: 10px; }
+
+        /* Coming Soon Section */
+        .coming-soon {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 180px 50px 100px;
+            text-align: center;
+        }
+
+        .coming-soon-content {
+            max-width: 600px;
+        }
+
+        .watch-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .watch-face {
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--silver);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 30px rgba(192, 192, 192, 0.3), inset 0 0 20px rgba(192, 192, 192, 0.1);
+            animation: watchPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes watchPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(192, 192, 192, 0.3), inset 0 0 20px rgba(192, 192, 192, 0.1); }
+            50% { box-shadow: 0 0 50px rgba(192, 192, 192, 0.5), inset 0 0 30px rgba(192, 192, 192, 0.2); }
+        }
+
+        .watch-face::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: var(--silver);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--silver);
+        }
+
+        .watch-hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            background: var(--silver);
+            border-radius: 2px;
+        }
+
+        .watch-hand.hour {
+            width: 4px;
+            height: 25px;
+            margin-left: -2px;
+            animation: rotateHour 12s linear infinite;
+        }
+
+        .watch-hand.minute {
+            width: 3px;
+            height: 35px;
+            margin-left: -1.5px;
+            animation: rotateMinute 2s linear infinite;
+        }
+
+        .watch-hand.second {
+            width: 1px;
+            height: 45px;
+            margin-left: -0.5px;
+            background: var(--silver-light);
+            animation: rotateSecond 1s linear infinite;
+        }
+
+        @keyframes rotateHour {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateMinute {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateSecond {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .coming-soon h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon h1 em {
+            font-style: italic;
+            color: var(--silver);
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid var(--silver);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 30px;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .coming-soon p {
+            font-size: 16px;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 15px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .notify-form input {
+            flex: 1;
+            padding: 16px 20px;
+            background: var(--black-light);
+            border: 1px solid var(--gray-dark);
+            color: var(--white);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .notify-form input:focus {
+            outline: none;
+            border-color: var(--silver);
+        }
+
+        .notify-form input::placeholder {
+            color: var(--gray);
+        }
+
+        .notify-form button {
+            padding: 16px 30px;
+            background: var(--silver);
+            color: var(--black);
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .notify-form button:hover {
+            background: var(--white);
+        }
+
+        .social-links {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--gray-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--silver);
+            border-color: var(--silver);
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
+            transition: fill 0.3s;
+        }
+
+        .social-links a:hover svg {
+            fill: var(--black);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .coming-soon { padding: 160px 30px 80px; }
+            .nav-main { padding: 15px 25px; }
+            .nav-menu { display: none; }
+            .mobile-toggle { display: flex; }
+        }
+
+        @media (max-width: 768px) {
+            .notify-form {
+                flex-direction: column;
+            }
+            .notify-form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Rain Effect -->
+    <div class="rain-container" id="rainContainer"></div>
+
+    <!-- Sparkle Effect -->
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <!-- Floating Diamond Decorations -->
+    <div class="diamond-float"></div>
+    <div class="diamond-float"></div>
+    <div class="diamond-float"></div>
+    <div class="diamond-float"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-announcement">
+            Rest Easy with Our 12-Month Warranty
+        </div>
+        <div class="nav-main">
+            <a href="index.html" class="nav-logo">
+                <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/etr-jewellery/logo/preview.png" alt="ETR Jewellery">
+            </a>
+            <div class="nav-icons">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 01-8 0"/>
+                </svg>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="watches.html" class="active">Watches</a></li>
+            <li><a href="Jewellery.html">Jewellery</a></li>
+            <li><a href="customgrillz.html">Custom Grillz</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="watches.html">Watches</a>
+        <a href="Jewellery.html">Jewellery</a>
+        <a href="customgrillz.html">Custom Grillz</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+    </div>
+
+    <!-- Coming Soon Section -->
+    <section class="coming-soon">
+        <div class="coming-soon-content">
+            <div class="watch-icon">
+                <div class="watch-face">
+                    <div class="watch-hand hour"></div>
+                    <div class="watch-hand minute"></div>
+                    <div class="watch-hand second"></div>
+                </div>
+            </div>
+
+            <div class="coming-soon-badge">Coming Soon</div>
+
+            <h1>Luxury <em>Watches</em></h1>
+
+            <p>We're curating an exclusive collection of iced-out timepieces. From AP to Rolex, Cartier to Patek Philippe - premium watches that demand attention. Be the first to know when we launch.</p>
+
+            <form class="notify-form" id="notifyForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Notify Me</button>
+            </form>
+
+            <div class="social-links">
+                <a href="https://instagram.com/etrjewellers" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" aria-label="TikTok">
+                    <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                </a>
+                <a href="https://wa.me/2LF225ET2SWBM1" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        }, { passive: true });
+
+        // Notify form
+        document.getElementById('notifyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert('Thanks! We\'ll notify you at ' + email + ' when our watch collection launches.');
+            this.reset();
+        });
+
+        // Rain Effect Generator
+        const rainContainer = document.getElementById('rainContainer');
+        for (let i = 0; i < 50; i++) {
+            const drop = document.createElement('div');
+            drop.className = 'rain-drop';
+            drop.style.left = Math.random() * 100 + '%';
+            drop.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+            drop.style.animationDelay = Math.random() * 3 + 's';
+            drop.style.height = (Math.random() * 15 + 10) + 'px';
+            rainContainer.appendChild(drop);
+        }
+
+        // Sparkle Effect Generator
+        const sparkleContainer = document.getElementById('sparkleContainer');
+        for (let i = 0; i < 25; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle-particle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            sparkle.style.animationDelay = Math.random() * 5 + 's';
+            sparkle.style.width = (Math.random() * 3 + 2) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            sparkleContainer.appendChild(sparkle);
+        }
+    </script>
+</body>
+</html>
