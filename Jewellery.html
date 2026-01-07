@@ -524,66 +524,15 @@
             stroke: #4ade80;
         }
 
-        /* Variant Selector */
-        .product-variants {
-            margin-bottom: 15px;
-        }
-
-        .variant-label {
-            font-size: 11px;
-            color: var(--gray-light);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .variant-select {
-            width: 100%;
-            padding: 10px 15px;
-            background: var(--black-soft);
-            border: 1px solid var(--gray-dark);
-            color: var(--white);
-            font-size: 13px;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-        }
-
-        .variant-select:hover {
-            border-color: var(--silver);
-        }
-
-        .variant-select:focus {
-            outline: none;
-            border-color: var(--silver);
-        }
-
-        /* Buy Button */
-        .buy-btn {
-            display: block;
-            width: 100%;
-            padding: 14px 20px;
-            background: var(--black);
-            color: var(--white);
+        /* Product Card Link */
+        .product-card-link {
             text-decoration: none;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-radius: 50px;
+            color: inherit;
+            display: block;
         }
 
-        .buy-btn:hover {
-            background: var(--silver);
-            color: var(--black);
+        .product-card {
+            cursor: pointer;
         }
 
         /* Footer */
@@ -782,204 +731,164 @@
     <section class="products-section">
         <div class="products-grid">
             <!-- Product 1: Twin Ace of Spades -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="product-badge">New</span>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Twin Ace of Spades Baguette Ring">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Rings</p>
-                    <h3 class="product-name">Twin "Ace of Spades" Baguette Ring 9ct Solid Gold VVS</h3>
-                    <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
-                    <p class="product-price">£1,250.00</p>
-                    <div class="product-meta">
-                        <div class="dispatch">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            Dispatched from United Kingdom
-                        </div>
-                        <div class="delivery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            FREE UK Delivery
+            <a href="product-ace-of-spades.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">New</span>
+                        <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Twin Ace of Spades Baguette Ring">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Rings</p>
+                        <h3 class="product-name">Twin "Ace of Spades" Baguette Ring 9ct Solid Gold VVS</h3>
+                        <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
+                        <p class="product-price">£1,250.00</p>
+                        <div class="product-meta">
+                            <div class="dispatch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Dispatched from United Kingdom
+                            </div>
+                            <div class="delivery">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                FREE UK Delivery
+                            </div>
                         </div>
                     </div>
-                    <div class="product-variants">
-                        <p class="variant-label">Band Colour</p>
-                        <select class="variant-select" data-product="1">
-                            <option value="https://buy.stripe.com/9B69AT8ow1rQeKzgVbfMA03">Rose gold</option>
-                            <option value="https://buy.stripe.com/5kQ6oH9sAfiGbyncEVfMA04">White</option>
-                            <option value="https://buy.stripe.com/eVq3cvawEeeC7i70WdfMA05">Yellow</option>
-                        </select>
-                    </div>
-                    <a href="https://buy.stripe.com/9B69AT8ow1rQeKzgVbfMA03" target="_blank" class="buy-btn" data-btn="1">Add to basket</a>
                 </div>
-            </div>
+            </a>
 
             <!-- Product 2: Twin Baguette -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="product-badge">Hot</span>
-                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Twin Baguette Ring">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Rings</p>
-                    <h3 class="product-name">9 Carat Solid Rose/White/Yellow Gold - Twin "Baguette" Ring</h3>
-                    <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
-                    <p class="product-price">£1,250.00</p>
-                    <div class="product-meta">
-                        <div class="dispatch">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            Dispatched from United Kingdom
-                        </div>
-                        <div class="delivery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            FREE UK Delivery
+            <a href="product-twin-baguette.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Hot</span>
+                        <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
+                        <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Twin Baguette Ring">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Rings</p>
+                        <h3 class="product-name">9 Carat Solid Rose/White/Yellow Gold - Twin "Baguette" Ring</h3>
+                        <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
+                        <p class="product-price">£1,250.00</p>
+                        <div class="product-meta">
+                            <div class="dispatch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Dispatched from United Kingdom
+                            </div>
+                            <div class="delivery">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                FREE UK Delivery
+                            </div>
                         </div>
                     </div>
-                    <div class="product-variants">
-                        <p class="variant-label">Band Colour</p>
-                        <select class="variant-select" data-product="2">
-                            <option value="https://buy.stripe.com/3cI5kD0W4b2q8mb20hfMA06">Rose gold</option>
-                            <option value="https://buy.stripe.com/bJedR9fQY5I645VdIZfMA07">White</option>
-                            <option value="https://buy.stripe.com/4gM8wP48g9Ymbyn34lfMA08">Yellow</option>
-                        </select>
-                    </div>
-                    <a href="https://buy.stripe.com/3cI5kD0W4b2q8mb20hfMA06" target="_blank" class="buy-btn" data-btn="2">Add to basket</a>
                 </div>
-            </div>
+            </a>
 
             <!-- Product 3: Heartbreak -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="product-badge">Premium</span>
-                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Heartbreak Ring">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Rings</p>
-                    <h3 class="product-name">New Style "HEARTBREAK" 9 Carat Solid Gold VVS Ring</h3>
-                    <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
-                    <p class="product-price">£2,500.00</p>
-                    <div class="product-meta">
-                        <div class="dispatch">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            Dispatched from United Kingdom
-                        </div>
-                        <div class="delivery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            FREE UK Delivery
+            <a href="product-heartbreak.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Premium</span>
+                        <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
+                        <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Heartbreak Ring">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Rings</p>
+                        <h3 class="product-name">New Style "HEARTBREAK" 9 Carat Solid Gold VVS Ring</h3>
+                        <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
+                        <p class="product-price">£2,500.00</p>
+                        <div class="product-meta">
+                            <div class="dispatch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Dispatched from United Kingdom
+                            </div>
+                            <div class="delivery">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                FREE UK Delivery
+                            </div>
                         </div>
                     </div>
-                    <div class="product-variants">
-                        <p class="variant-label">Band Colour</p>
-                        <select class="variant-select" data-product="3">
-                            <option value="https://buy.stripe.com/5kQ5kDbAIfiG31RdIZfMA09">Rose gold</option>
-                            <option value="https://buy.stripe.com/4gMcN5fQYc6ucCr48pfMA0a">White</option>
-                            <option value="https://buy.stripe.com/14A4gzbAI3zY59ZfR7fMA0b">Yellow</option>
-                        </select>
-                    </div>
-                    <a href="https://buy.stripe.com/5kQ5kDbAIfiG31RdIZfMA09" target="_blank" class="buy-btn" data-btn="3">Add to basket</a>
                 </div>
-            </div>
+            </a>
 
             <!-- Product 4: Half Band Eternity -->
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Half Band Eternity Ring">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Rings</p>
-                    <h3 class="product-name">9 Carat Rose/White/Yellow Gold Half Band "ETERNITY" Ring</h3>
-                    <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
-                    <p class="product-price">£850.00</p>
-                    <div class="product-meta">
-                        <div class="dispatch">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            Dispatched from United Kingdom
-                        </div>
-                        <div class="delivery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            FREE UK Delivery
+            <a href="product-half-band-eternity.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
+                        <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Half Band Eternity Ring">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Rings</p>
+                        <h3 class="product-name">9 Carat Rose/White/Yellow Gold Half Band "ETERNITY" Ring</h3>
+                        <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
+                        <p class="product-price">£850.00</p>
+                        <div class="product-meta">
+                            <div class="dispatch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Dispatched from United Kingdom
+                            </div>
+                            <div class="delivery">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                FREE UK Delivery
+                            </div>
                         </div>
                     </div>
-                    <div class="product-variants">
-                        <p class="variant-label">Band Colour</p>
-                        <select class="variant-select" data-product="4">
-                            <option value="https://buy.stripe.com/dRmeVd9sA9Ym59ZawNfMA0c">Rose gold</option>
-                            <option value="https://buy.stripe.com/bJe9AT6go0nM7i70WdfMA0d">White</option>
-                            <option value="https://buy.stripe.com/4gMeVdawEgmKgSH8oFfMA0e">Yellow</option>
-                        </select>
-                    </div>
-                    <a href="https://buy.stripe.com/dRmeVd9sA9Ym59ZawNfMA0c" target="_blank" class="buy-btn" data-btn="4">Add to basket</a>
                 </div>
-            </div>
+            </a>
 
             <!-- Product 5: Full Band Eternity VVS -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="product-badge">Luxury</span>
-                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Full Band Eternity Ring VVS">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Rings</p>
-                    <h3 class="product-name">9 Carat Solid White/Yellow/Rose Gold Full Band "ETERNITY" Ring VVS</h3>
-                    <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
-                    <p class="product-price">£1,200.00</p>
-                    <div class="product-meta">
-                        <div class="dispatch">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            Dispatched from United Kingdom
-                        </div>
-                        <div class="delivery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            FREE UK Delivery
+            <a href="product-full-band-eternity.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Luxury</span>
+                        <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
+                        <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Full Band Eternity Ring VVS">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Rings</p>
+                        <h3 class="product-name">9 Carat Solid White/Yellow/Rose Gold Full Band "ETERNITY" Ring VVS</h3>
+                        <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
+                        <p class="product-price">£1,200.00</p>
+                        <div class="product-meta">
+                            <div class="dispatch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Dispatched from United Kingdom
+                            </div>
+                            <div class="delivery">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                FREE UK Delivery
+                            </div>
                         </div>
                     </div>
-                    <div class="product-variants">
-                        <p class="variant-label">Band Colour</p>
-                        <select class="variant-select" data-product="5">
-                            <option value="https://buy.stripe.com/aFafZh2083zYbyn7kBfMA0f">Rose gold</option>
-                            <option value="https://buy.stripe.com/28EaEX7ksb2qeKzcEVfMA0g">White</option>
-                            <option value="https://buy.stripe.com/9B67sLdIQ8UicCr6gxfMA0h">Yellow</option>
-                        </select>
-                    </div>
-                    <a href="https://buy.stripe.com/aFafZh2083zYbyn7kBfMA0f" target="_blank" class="buy-btn" data-btn="5">Add to basket</a>
                 </div>
-            </div>
+            </a>
 
             <!-- Product 6: 925 Silver Eternity -->
-            <div class="product-card">
-                <div class="product-image">
-                    <span class="product-badge">Best Value</span>
-                    <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="925 Silver Eternity Ring">
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Rings</p>
-                    <h3 class="product-name">925 Silver Half Band "Eternity" Ring Moissanite Diamond</h3>
-                    <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
-                    <p class="product-price">£650.00</p>
-                    <div class="product-meta">
-                        <div class="dispatch">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                            Dispatched from United Kingdom
-                        </div>
-                        <div class="delivery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            FREE UK Delivery
+            <a href="product-silver-eternity.html" class="product-card-link">
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Best Value</span>
+                        <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
+                        <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="925 Silver Eternity Ring">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">Rings</p>
+                        <h3 class="product-name">925 Silver Half Band "Eternity" Ring Moissanite Diamond</h3>
+                        <p class="product-seller">GRILLEDUP <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> Local seller</p>
+                        <p class="product-price">£650.00</p>
+                        <div class="product-meta">
+                            <div class="dispatch">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Dispatched from United Kingdom
+                            </div>
+                            <div class="delivery">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                FREE UK Delivery
+                            </div>
                         </div>
                     </div>
-                    <div class="product-variants" style="display: none;">
-                        <p class="variant-label">Material</p>
-                        <select class="variant-select" data-product="6">
-                            <option value="https://buy.stripe.com/cNi4gz8ow7Qe59Z6gxfMA0i">Silver</option>
-                        </select>
-                    </div>
-                    <a href="https://buy.stripe.com/cNi4gz8ow7Qe59Z6gxfMA0i" target="_blank" class="buy-btn" data-btn="6">Add to basket</a>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -1068,17 +977,6 @@
                 ticking = true;
             }
         }, { passive: true });
-
-        // Variant selector - update buy button URL when variant changes
-        document.querySelectorAll('.variant-select').forEach(select => {
-            select.addEventListener('change', function() {
-                const productNum = this.dataset.product;
-                const buyBtn = document.querySelector(`[data-btn="${productNum}"]`);
-                if (buyBtn) {
-                    buyBtn.href = this.value;
-                }
-            });
-        });
 
         // Rain Effect Generator
         const rainContainer = document.getElementById('rainContainer');
