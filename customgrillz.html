@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Grillz Booking | ETR Jewellery</title>
+    <title>Custom Jewellery Booking | ETR Jewellery</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -774,6 +774,7 @@
         <ul class="nav-menu">
             <li><a href="watches.html">Watches</a></li>
             <li><a href="Jewellery.html">Jewellery</a></li>
+            <li><a href="customgrillz.html" class="active">Custom</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="about.html">About</a></li>
         </ul>
@@ -783,14 +784,15 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="watches.html">Watches</a>
         <a href="Jewellery.html">Jewellery</a>
+        <a href="customgrillz.html">Custom</a>
         <a href="contact.html">Contact</a>
         <a href="about.html">About</a>
     </div>
 
     <!-- Page Header -->
     <section class="page-header">
-        <h1>Custom <em>Grillz</em></h1>
-        <p>Book your appointment for custom-fitted grillz. VVS diamonds, solid gold, and bespoke designs made just for you.</p>
+        <h1>Custom <em>Jewellery</em></h1>
+        <p>Book your appointment for custom-made jewellery. VVS diamonds, solid gold, and bespoke designs made just for you.</p>
     </section>
 
     <!-- Booking Section -->
@@ -799,7 +801,7 @@
             <!-- Info Side -->
             <div class="booking-info">
                 <h2>The <em>Process</em></h2>
-                <p>Every custom grillz order starts with a consultation. We'll discuss your design, take your impressions, and craft a piece that's uniquely yours.</p>
+                <p>Every custom jewellery order starts with a consultation. We'll discuss your design, understand your vision, and craft a piece that's uniquely yours.</p>
 
                 <div class="process-steps">
                     <div class="process-step">
@@ -819,22 +821,22 @@
                     <div class="process-step">
                         <div class="step-number">3</div>
                         <div class="step-content">
-                            <h4>Impression Kit</h4>
-                            <p>We'll take dental impressions or send you a home kit for a perfect fit.</p>
+                            <h4>Design & Approval</h4>
+                            <p>We'll create a design mockup for your approval before beginning the crafting process.</p>
                         </div>
                     </div>
                     <div class="process-step">
                         <div class="step-number">4</div>
                         <div class="step-content">
                             <h4>Crafting & Delivery</h4>
-                            <p>Your custom grillz will be handcrafted and delivered within 2-3 weeks.</p>
+                            <p>Your custom jewellery will be handcrafted and delivered within 2-3 weeks.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="pricing-note">
                     <h4>Pricing</h4>
-                    <p>Custom grillz start from £69 for single tooth caps. VVS diamond pieces and full sets are quoted during consultation based on your specifications.</p>
+                    <p>Custom jewellery pricing varies based on design complexity and materials. VVS diamond pieces and bespoke designs are quoted during consultation based on your specifications.</p>
                 </div>
             </div>
 
@@ -897,20 +899,20 @@
                             <input type="tel" id="phone" name="phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="grillzType">Type of Grillz</label>
-                            <select id="grillzType" name="grillzType">
+                            <label for="jewelleryType">Type of Jewellery</label>
+                            <select id="jewelleryType" name="jewelleryType">
                                 <option value="">Select an option</option>
-                                <option value="single">Single Tooth Cap</option>
-                                <option value="double">Double Tooth Caps</option>
-                                <option value="top6">Top 6 (Six teeth)</option>
-                                <option value="bottom6">Bottom 6 (Six teeth)</option>
-                                <option value="fullset">Full Set (Top & Bottom)</option>
+                                <option value="ring">Ring</option>
+                                <option value="pendant">Pendant</option>
+                                <option value="chain">Chain</option>
+                                <option value="bracelet">Bracelet</option>
+                                <option value="earrings">Earrings</option>
                                 <option value="custom">Custom Design</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="notes">Additional Notes</label>
-                            <textarea id="notes" name="notes" placeholder="Tell us about your design ideas, preferred materials, etc."></textarea>
+                            <textarea id="notes" name="notes" placeholder="Tell us about your design ideas, preferred materials, gemstones, etc."></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Book Appointment</button>
                     </form>
@@ -1125,7 +1127,7 @@
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
-                grillzType: document.getElementById('grillzType').value,
+                jewelleryType: document.getElementById('jewelleryType').value,
                 notes: document.getElementById('notes').value,
                 date: selectedDate.toISOString(),
                 time: selectedTime
