@@ -1189,6 +1189,90 @@
             grid-column: span 2;
         }
 
+        /* Celebrity Hero Slideshow (behind hero content) */
+        .celeb-hero-slideshow {
+            display: flex !important;
+        }
+
+        .celeb-hero-slide {
+            display: flex !important;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+        }
+
+        .celeb-hero-slide:not(.active) {
+            display: none !important;
+        }
+
+        .celeb-panel {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .celeb-panel img,
+        .celeb-panel video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        /* Cloudy/Vignette edges effect */
+        .celeb-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.85) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Additional edge fade for seamless blend */
+        .celeb-panel::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 120px 60px rgba(0,0,0,0.7);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Left panel - fade more on left edge */
+        .celeb-panel:first-child::after {
+            box-shadow: inset 80px 0 100px 40px rgba(0,0,0,0.8), inset 0 0 120px 60px rgba(0,0,0,0.6);
+        }
+
+        /* Right panel - fade more on right edge */
+        .celeb-panel:last-child::after {
+            box-shadow: inset -80px 0 100px 40px rgba(0,0,0,0.8), inset 0 0 120px 60px rgba(0,0,0,0.6);
+        }
+
+        .celeb-name {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            z-index: 10;
+            opacity: 0.6;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+        }
+
+        /* Hide celebrity slideshow on mobile, show mobile video instead */
+        @media (max-width: 768px) {
+            .celeb-hero-slideshow {
+                display: none !important;
+            }
+        }
+
         /* Portfolio Section */
         .portfolio {
             background: var(--black);
@@ -1857,19 +1941,31 @@
                     <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/32eqwdqwd.mp4" type="video/mp4">
                 </video>
             </div>
-            <!-- Desktop Slideshow -->
-            <div class="hero-slideshow">
-                <div class="hero-slide active">
-                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/990e804e-b18f-437e-2d19-49bbeb437800/public" alt="ETR Jewellery">
+            <!-- Desktop Celebrity Slideshow -->
+            <div class="hero-slideshow celeb-hero-slideshow" id="celebSlideshow">
+                <!-- Slide 1: Izz Pot & Liyah Mai -->
+                <div class="hero-slide celeb-hero-slide active">
+                    <div class="celeb-panel">
+                        <video autoplay muted loop playsinline>
+                            <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Video-2026-01-08-at-13-22-44.mp4" type="video/mp4">
+                        </video>
+                        <span class="celeb-name">Izz Pot</span>
+                    </div>
+                    <div class="celeb-panel">
+                        <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/eqweqe.jpeg" alt="Liyah Mai">
+                        <span class="celeb-name">Liyah Mai</span>
+                    </div>
                 </div>
-                <div class="hero-slide">
-                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/3c1eab0a-5a23-4de2-1634-f2c3f3d79000/public" alt="ETR Jewellery">
-                </div>
-                <div class="hero-slide">
-                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7a2943c5-c1b9-4c34-2bc8-ae80db845e00/public" alt="ETR Jewellery">
-                </div>
-                <div class="hero-slide bw">
-                    <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/bc0b0aac-f0e2-4d0d-4fbf-7945cbb62600/public" alt="ETR Jewellery">
+                <!-- Slide 2: Twin S & TR Mulli -->
+                <div class="hero-slide celeb-hero-slide">
+                    <div class="celeb-panel">
+                        <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-4411111111111.jpeg" alt="Twin S">
+                        <span class="celeb-name">Twin S</span>
+                    </div>
+                    <div class="celeb-panel">
+                        <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-4411111111111.jpeg" alt="TR Mulli">
+                        <span class="celeb-name">TR Mulli</span>
+                    </div>
                 </div>
             </div>
             <div class="hero-flash" id="heroFlash"></div>
@@ -2542,21 +2638,21 @@
             }
         }, 800);
 
-        // Hero section image slideshow with flash effects
-        const heroSlides = document.querySelectorAll('.hero-slide');
+        // Hero section flash effects (celebrity slideshow is now the background)
         const heroFlash = document.getElementById('heroFlash');
         const heroGlitch = document.getElementById('heroGlitch');
-        let currentHeroSlide = 0;
 
         function triggerHeroFlash() {
-            heroFlash.style.animation = 'heroFlash 0.2s ease-out';
-            setTimeout(() => {
-                heroFlash.style.animation = '';
-            }, 200);
+            if (heroFlash) {
+                heroFlash.style.animation = 'heroFlash 0.2s ease-out';
+                setTimeout(() => {
+                    heroFlash.style.animation = '';
+                }, 200);
+            }
         }
 
         function triggerHeroGlitch() {
-            if (Math.random() > 0.4) {
+            if (heroGlitch && Math.random() > 0.4) {
                 heroGlitch.style.animation = 'heroGlitch 0.4s ease-out';
                 setTimeout(() => {
                     heroGlitch.style.animation = '';
@@ -2564,21 +2660,33 @@
             }
         }
 
-        function nextHeroSlide() {
-            heroSlides[currentHeroSlide].classList.remove('active');
-            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+        // Celebrity Hero Slideshow
+        const celebSlides = document.querySelectorAll('.celeb-hero-slide');
+        let currentCelebSlide = 0;
 
-            // Flash effect on transition
-            if (Math.random() > 0.25) {
-                triggerHeroFlash();
+        function setCelebSlide(index) {
+            if (celebSlides.length > 0) {
+                celebSlides[currentCelebSlide].classList.remove('active');
+                currentCelebSlide = index;
+                celebSlides[currentCelebSlide].classList.add('active');
             }
-            triggerHeroGlitch();
-
-            heroSlides[currentHeroSlide].classList.add('active');
         }
 
-        // Change hero slides every 3 seconds with effects
-        setInterval(nextHeroSlide, 3000);
+        function nextCelebSlide() {
+            if (celebSlides.length > 0) {
+                // Flash effect on transition
+                if (Math.random() > 0.25) {
+                    triggerHeroFlash();
+                }
+                triggerHeroGlitch();
+
+                const nextIndex = (currentCelebSlide + 1) % celebSlides.length;
+                setCelebSlide(nextIndex);
+            }
+        }
+
+        // Auto-advance celebrity slideshow every 5 seconds
+        setInterval(nextCelebSlide, 5000);
 
         // Random subtle flashes for hero
         setInterval(() => {
