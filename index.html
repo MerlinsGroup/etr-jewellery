@@ -446,22 +446,50 @@
             object-fit: cover;
         }
 
-        /* Mobile Hero Video Background */
-        .hero-mobile-video {
+        /* Mobile Hero Slideshow */
+        .hero-mobile-slideshow {
             display: none;
             position: absolute;
             inset: 0;
             z-index: 0;
         }
 
-        .hero-mobile-video video {
+        .hero-mobile-slideshow .mobile-celeb-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .hero-mobile-slideshow .mobile-celeb-slide.active {
+            opacity: 1;
+        }
+
+        .hero-mobile-slideshow .mobile-celeb-slide img,
+        .hero-mobile-slideshow .mobile-celeb-slide video,
+        .hero-mobile-slideshow .mobile-celeb-slide iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
+        .hero-mobile-slideshow .mobile-celeb-name {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            z-index: 10;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
         @media (max-width: 768px) {
-            .hero-mobile-video {
+            .hero-mobile-slideshow {
                 display: block;
             }
             .hero-slideshow {
@@ -871,6 +899,29 @@
             color: var(--gray);
         }
 
+        /* Who Rocks ETR */
+        .who-rocks-etr {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .who-rocks-etr h3 {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 12px;
+        }
+
+        .who-rocks-etr .celeb-names {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
         .about-cta {
             display: inline-flex;
             align-items: center;
@@ -1213,11 +1264,13 @@
         }
 
         .celeb-panel img,
-        .celeb-panel video {
+        .celeb-panel video,
+        .celeb-panel iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center 20%;
+            border: none;
         }
 
         /* Cloudy/Vignette edges effect */
@@ -1248,6 +1301,16 @@
         /* Right panel - fade more on right edge */
         .celeb-panel:last-child::after {
             box-shadow: inset -80px 0 100px 40px rgba(0,0,0,0.8), inset 0 0 120px 60px rgba(0,0,0,0.6);
+        }
+
+        /* Iframe overlay for cloudy effect (iframes don't respect ::before/::after) */
+        .iframe-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.85) 100%);
+            box-shadow: inset -80px 0 100px 40px rgba(0,0,0,0.8), inset 0 0 120px 60px rgba(0,0,0,0.6);
+            z-index: 5;
+            pointer-events: none;
         }
 
         .celeb-name {
@@ -1294,10 +1357,12 @@
         }
 
         .portfolio-item img,
-        .portfolio-item video {
+        .portfolio-item video,
+        .portfolio-item iframe {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border: none;
             transition: transform 0.5s ease;
         }
 
@@ -1935,11 +2000,28 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg" id="heroSlideshow">
-            <!-- Mobile Video Background -->
-            <div class="hero-mobile-video">
-                <video autoplay muted loop playsinline>
-                    <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/32eqwdqwd.mp4" type="video/mp4">
-                </video>
+            <!-- Mobile Celebrity Slideshow (same 4 celebs as desktop) -->
+            <div class="hero-mobile-slideshow" id="mobileHeroSlideshow">
+                <div class="mobile-celeb-slide active">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Video-2026-01-08-at-13-22-44.mp4" type="video/mp4">
+                    </video>
+                    <span class="mobile-celeb-name">Izz Pot</span>
+                </div>
+                <div class="mobile-celeb-slide">
+                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/eqweqe.jpeg" alt="Liyah Mai">
+                    <span class="mobile-celeb-name">Liyah Mai</span>
+                </div>
+                <div class="mobile-celeb-slide">
+                    <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-4411111111111.jpeg" alt="Twin S">
+                    <span class="mobile-celeb-name">Twin S</span>
+                </div>
+                <div class="mobile-celeb-slide">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://customer-w3eshzf2kramnqvl.cloudflarestream.com/7ec832ade95841becc0adac478c664ad/downloads/default.mp4" type="video/mp4">
+                    </video>
+                    <span class="mobile-celeb-name">TR Mulli</span>
+                </div>
             </div>
             <!-- Desktop Celebrity Slideshow -->
             <div class="hero-slideshow celeb-hero-slideshow" id="celebSlideshow">
@@ -1970,6 +2052,7 @@
                             allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                             allowfullscreen="true"
                         ></iframe>
+                        <div class="iframe-overlay"></div>
                         <span class="celeb-name">TR Mulli</span>
                     </div>
                 </div>
@@ -2026,13 +2109,16 @@
             <div class="about-video" id="aboutSlideshow">
                  <div class="about-slideshow">
                     <div class="about-slide active">
-                        <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7ea408bd-3010-4e54-7b2c-c33a18547600/public" alt="ETR Jewellery">
+                        <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/232312.jpeg" alt="ETR Jewellery">
                     </div>
                     <div class="about-slide">
-                        <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/cca0e8a3-f519-4bbe-c069-55a0b3981800/public" alt="ETR Chains">
+                        <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/2322.jpeg" alt="ETR Jewellery">
                     </div>
                     <div class="about-slide">
-                        <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/c9a684ec-3849-4c07-41f9-5aeebe58ef00/public" alt="ETR Grillz">
+                        <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-457777777777.jpeg" alt="ETR Jewellery">
+                    </div>
+                    <div class="about-slide">
+                        <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-4411.jpeg" alt="ETR Jewellery">
                     </div>
                 </div>
                 <div class="flash-overlay" id="flashOverlay"></div>
@@ -2091,6 +2177,13 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Who Rocks ETR -->
+                <div class="who-rocks-etr">
+                    <h3>Who Rocks ETR</h3>
+                    <p class="celeb-names">Izz Pot • Liyah Mai • Twin S • TR Mulli</p>
+                </div>
+
                 <a href="#" class="about-cta">
                     Explore Collection
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2212,6 +2305,15 @@
             <!-- Image -->
             <div class="portfolio-item reveal reveal-delay-1">
                 <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-4411.jpeg" alt="ETR Jewellery">
+            </div>
+            <!-- TR Mulli Video -->
+            <div class="portfolio-item reveal reveal-delay-2">
+                <iframe
+                    src="https://customer-w3eshzf2kramnqvl.cloudflarestream.com/7ec832ade95841becc0adac478c664ad/iframe?autoplay=true&loop=true&muted=true&poster=https%3A%2F%2Fcustomer-w3eshzf2kramnqvl.cloudflarestream.com%2F7ec832ade95841becc0adac478c664ad%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
+                    loading="lazy"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                    allowfullscreen="true"
+                ></iframe>
             </div>
         </div>
     </section>
