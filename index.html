@@ -1535,54 +1535,33 @@
 
         .celebrities-grid {
             display: flex;
-            gap: 40px;
-            overflow-x: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px 40px;
             padding: 20px 0;
         }
 
-        .celebrities-grid::-webkit-scrollbar {
-            display: none;
-        }
-
         .celeb-card {
-            flex: 0 0 280px;
             display: flex;
             align-items: center;
-            gap: 20px;
-        }
-
-        .celeb-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;
-            border: 2px solid var(--silver);
-        }
-
-        .celeb-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            justify-content: center;
         }
 
         .celeb-info h4 {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 400;
-            margin-bottom: 5px;
-        }
-
-        .celeb-info p {
-            font-size: 12px;
-            color: var(--gray-light);
-            margin-bottom: 10px;
-        }
-
-        .celeb-quote {
-            font-size: 13px;
-            font-style: italic;
             color: var(--silver);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .celebrities-grid {
+                gap: 15px 30px;
+            }
+            .celeb-info h4 {
+                font-size: 15px;
+            }
         }
 
         /* Reveal Animations - GPU Accelerated */
@@ -2385,84 +2364,6 @@
         </div>
     </section>
 
-    <!-- Reviews Section -->
-    <section class="reviews">
-        <div class="section-header reveal">
-            <p class="section-eyebrow">Customer Love</p>
-            <h2 class="section-title">What Our Clients Say</h2>
-        </div>
-        <div class="reviews-slider reveal">
-            <div class="review-card">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <p class="review-text">"The quality of my custom grillz is insane! ETR really delivered on their promise. The fit is perfect and the ice hits different. Trust the process for real!"</p>
-                <div class="review-author">
-                    <div class="review-avatar">JM</div>
-                    <div class="review-author-info">
-                        <h4>James M.</h4>
-                        <p>Verified Buyer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <p class="review-text">"Copped the Cuban link chain and it's cold! Communication was on point and delivery was fast. Already planning my next purchase. ETR is the one!"</p>
-                <div class="review-author">
-                    <div class="review-avatar">DK</div>
-                    <div class="review-author-info">
-                        <h4>Daniel K.</h4>
-                        <p>Verified Buyer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <p class="review-text">"Got a custom pendant made and the craftsmanship is next level. These guys really know what they're doing. 100% recommend ETR to anyone looking for quality ice."</p>
-                <div class="review-author">
-                    <div class="review-avatar">SC</div>
-                    <div class="review-author-info">
-                        <h4>Sophie C.</h4>
-                        <p>Verified Buyer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="review-card">
-                <div class="review-stars">
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <p class="review-text">"The watch I got from ETR is absolutely stunning. Came with all the right papers and packaging. These guys are legit and the customer service is top tier."</p>
-                <div class="review-author">
-                    <div class="review-avatar">MT</div>
-                    <div class="review-author-info">
-                        <h4>Marcus T.</h4>
-                        <p>Verified Buyer</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Celebrities Section -->
     <section class="celebrities">
         <div class="section-header reveal">
@@ -2471,43 +2372,48 @@
         </div>
         <div class="celebrities-grid">
             <div class="celeb-card reveal reveal-delay-1">
-                <div class="celeb-image">
-                    <!-- <img loading="lazy" src="https://i1.sndcdn.com/avatars-vIwQxmxZyPgPjsgy-Y1QJLQ-t500x500.jpg" alt="SavNDO"> -->
-                </div>
                 <div class="celeb-info">
                     <h4>SavNDO</h4>
-                    <p>Artist / Musician</p>
-                    <span class="celeb-quote">"That looks cold!"</span>
                 </div>
             </div>
             <div class="celeb-card reveal reveal-delay-2">
-                <div class="celeb-image">
-                    <!-- <img loading="lazy" src="https://i.scdn.co/image/ab6761610000e5eb0c68f6c95232e716f0abee8d" alt="Berna"> -->
-                </div>
                 <div class="celeb-info">
                     <h4>Berna</h4>
-                    <p>Artist / Musician</p>
-                    <span class="celeb-quote">"ETR never miss!"</span>
                 </div>
             </div>
             <div class="celeb-card reveal reveal-delay-3">
-                <div class="celeb-image">
-                    <!-- <img loading="lazy" src="https://i.scdn.co/image/ab6761610000e5eb05f513db51758ee0732b0c7a" alt="Lil Sykes"> -->
-                </div>
                 <div class="celeb-info">
                     <h4>Lil Sykes</h4>
-                    <p>Artist / Musician</p>
-                    <span class="celeb-quote">"It's crazy bro, my God"</span>
                 </div>
             </div>
             <div class="celeb-card reveal reveal-delay-4">
-                <div class="celeb-image">
-                    <!-- <img loading="lazy" src="https://i.scdn.co/image/ab6761610000e5eb8a1cebf946f1b9d6a35e8b0a" alt="Pak Man"> -->
-                </div>
                 <div class="celeb-info">
                     <h4>Pak Man</h4>
-                    <p>Artist / Musician</p>
-                    <span class="celeb-quote">"Trust the process!"</span>
+                </div>
+            </div>
+            <div class="celeb-card reveal reveal-delay-1">
+                <div class="celeb-info">
+                    <h4>Booter Bee</h4>
+                </div>
+            </div>
+            <div class="celeb-card reveal reveal-delay-2">
+                <div class="celeb-info">
+                    <h4>Dubz</h4>
+                </div>
+            </div>
+            <div class="celeb-card reveal reveal-delay-3">
+                <div class="celeb-info">
+                    <h4>Flama</h4>
+                </div>
+            </div>
+            <div class="celeb-card reveal reveal-delay-4">
+                <div class="celeb-info">
+                    <h4>TR Mulli</h4>
+                </div>
+            </div>
+            <div class="celeb-card reveal reveal-delay-1">
+                <div class="celeb-info">
+                    <h4>ACG</h4>
                 </div>
             </div>
         </div>
@@ -2783,6 +2689,28 @@
 
         // Auto-advance celebrity slideshow every 5 seconds
         setInterval(nextCelebSlide, 5000);
+
+        // Mobile Hero Slideshow (cycles through same 4 celebs, one at a time)
+        const mobileCelebSlides = document.querySelectorAll('.mobile-celeb-slide');
+        let currentMobileCelebSlide = 0;
+
+        function setMobileCelebSlide(index) {
+            if (mobileCelebSlides.length > 0) {
+                mobileCelebSlides[currentMobileCelebSlide].classList.remove('active');
+                currentMobileCelebSlide = index;
+                mobileCelebSlides[currentMobileCelebSlide].classList.add('active');
+            }
+        }
+
+        function nextMobileCelebSlide() {
+            if (mobileCelebSlides.length > 0) {
+                const nextIndex = (currentMobileCelebSlide + 1) % mobileCelebSlides.length;
+                setMobileCelebSlide(nextIndex);
+            }
+        }
+
+        // Auto-advance mobile celebrity slideshow every 5 seconds
+        setInterval(nextMobileCelebSlide, 5000);
 
         // Random subtle flashes for hero
         setInterval(() => {
