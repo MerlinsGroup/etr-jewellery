@@ -144,13 +144,12 @@
     <section class="product-detail">
         <div class="product-gallery">
             <div class="gallery-main">
-                <div class="image-updating-overlay"><span class="image-updating-text">Image Updating</span></div>
-                <img id="mainImage" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Twin Baguette Ring">
+                <img id="mainImage" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/2.png" alt="Twin Baguette Ring">
                 <button class="gallery-nav prev" onclick="changeImage(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
                 <button class="gallery-nav next" onclick="changeImage(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
             </div>
             <div class="gallery-thumbs">
-                <div class="gallery-thumb active" onclick="setImage(0)"><img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public" alt="Thumb 1"></div>
+                <div class="gallery-thumb active" onclick="setImage(0)"><img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/2.png" alt="Thumb 1"></div>
             </div>
         </div>
         <div class="product-info">
@@ -217,7 +216,7 @@
     <script>
         const mobileToggle = document.getElementById('mobileToggle'); const mobileMenu = document.getElementById('mobileMenu');
         mobileToggle.addEventListener('click', () => { mobileToggle.classList.toggle('active'); mobileMenu.classList.toggle('active'); document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : ''; });
-        const images = ['https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/1411aafe-08a6-4218-ca0c-72d88713ea00/public']; let currentImage = 0;
+        const images = ['https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/2.png']; let currentImage = 0;
         function setImage(index) { currentImage = index; document.getElementById('mainImage').src = images[index]; document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => { thumb.classList.toggle('active', i === index); }); }
         function changeImage(direction) { currentImage = (currentImage + direction + images.length) % images.length; setImage(currentImage); }
         function toggleDetails(header) { header.classList.toggle('open'); header.nextElementSibling.classList.toggle('open'); }
