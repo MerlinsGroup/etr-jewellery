@@ -943,6 +943,9 @@
             will-change: transform;
             backface-visibility: hidden;
             animation: breathe 3s ease-in-out infinite;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .drop-card:nth-child(2) { animation-delay: 0.5s; }
@@ -1195,14 +1198,14 @@
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 0;
         }
 
         .portfolio-item {
             position: relative;
             aspect-ratio: 1;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 0;
             cursor: pointer;
         }
 
@@ -1288,7 +1291,7 @@
             }
             .portfolio-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 0;
             }
             .portfolio-item.featured {
                 grid-column: span 1;
@@ -2003,49 +2006,50 @@
             <h2 class="section-title">Latest Drops</h2>
         </div>
         <div class="drops-grid">
-            <div class="drop-card reveal reveal-delay-1">
+            <a href="product-ace-of-spades.html" class="drop-card reveal reveal-delay-1">
                 <div class="drop-image">
                     <span class="drop-badge">New</span>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/a8b5cc42-ca28-4ba6-3360-8c99c58ac200/public" alt="Diamond Grillz">
+                    <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/1.png" alt="Ace of Spades Ring">
                 </div>
                 <div class="drop-info">
-                    <p class="drop-category">Grillz</p>
-                    <h3 class="drop-name">VVS Diamond Grillz</h3>
-                    <p class="drop-price">From £450.00</p>
+                    <p class="drop-category">Rings</p>
+                    <h3 class="drop-name">Twin "Ace of Spades" Baguette Ring</h3>
+                    <p class="drop-price">£1,250.00</p>
                 </div>
-            </div>
-            <div class="drop-card reveal reveal-delay-2">
+            </a>
+            <a href="product-twin-baguette.html" class="drop-card reveal reveal-delay-2">
                 <div class="drop-image">
                     <span class="drop-badge">Hot</span>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/f1ea3b55-3add-42f0-8199-ef582b5f1500/public" alt="Cuban Chain">
+                    <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/2.png" alt="Twin Baguette Ring">
                 </div>
                 <div class="drop-info">
-                    <p class="drop-category">Chains</p>
-                    <h3 class="drop-name">Iced Cuban Link Chain</h3>
-                    <p class="drop-price">From £890.00</p>
+                    <p class="drop-category">Rings</p>
+                    <h3 class="drop-name">Twin "Baguette" Ring</h3>
+                    <p class="drop-price">£1,250.00</p>
                 </div>
-            </div>
-            <div class="drop-card reveal reveal-delay-3">
+            </a>
+            <a href="product-heartbreak.html" class="drop-card reveal reveal-delay-3">
                 <div class="drop-image">
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/b512033b-d1bb-4938-20db-d08d5cd79400/public" alt="Custom Pendant">
+                    <span class="drop-badge">Premium</span>
+                    <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/3.png" alt="Heartbreak Ring">
                 </div>
                 <div class="drop-info">
-                    <p class="drop-category">Pendants</p>
-                    <h3 class="drop-name">Custom Iced Pendant</h3>
-                    <p class="drop-price">From £650.00</p>
+                    <p class="drop-category">Rings</p>
+                    <h3 class="drop-name">"HEARTBREAK" Ring</h3>
+                    <p class="drop-price">£2,500.00</p>
                 </div>
-            </div>
-            <div class="drop-card reveal reveal-delay-4">
+            </a>
+            <a href="product-full-band-eternity.html" class="drop-card reveal reveal-delay-4">
                 <div class="drop-image">
-                    <span class="drop-badge">Limited</span>
-                    <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7eb60943-c7bc-4730-990a-4316e6e8b100/public" alt="Luxury Watch">
+                    <span class="drop-badge">Luxury</span>
+                    <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/5.png" alt="Full Band Eternity Ring">
                 </div>
                 <div class="drop-info">
-                    <p class="drop-category">Watches</p>
-                    <h3 class="drop-name">Iced AP Royal Oak</h3>
-                    <p class="drop-price">From £2,500.00</p>
+                    <p class="drop-category">Rings</p>
+                    <h3 class="drop-name">Full Band "ETERNITY" Ring VVS</h3>
+                    <p class="drop-price">£1,200.00</p>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -2057,10 +2061,10 @@
         </div>
         <div class="categories-grid">
             <div class="category-card reveal reveal-delay-1">
-                <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/a8b5cc42-ca28-4ba6-3360-8c99c58ac200/public" alt="Grillz">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/4.png" alt="Watches">
                 <div class="category-overlay">
-                    <h3 class="category-name">Grillz</h3>
-                    <a href="#" class="category-link">
+                    <h3 class="category-name">Watches</h3>
+                    <a href="watches.html" class="category-link">
                         Shop Now
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -2069,10 +2073,10 @@
                 </div>
             </div>
             <div class="category-card reveal reveal-delay-2">
-                <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/f1ea3b55-3add-42f0-8199-ef582b5f1500/public" alt="Chains">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/1.png" alt="Jewellery">
                 <div class="category-overlay">
-                    <h3 class="category-name">Chains</h3>
-                    <a href="#" class="category-link">
+                    <h3 class="category-name">Jewellery</h3>
+                    <a href="Jewellery.html" class="category-link">
                         Shop Now
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -2081,10 +2085,10 @@
                 </div>
             </div>
             <div class="category-card reveal reveal-delay-3">
-                <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/b512033b-d1bb-4938-20db-d08d5cd79400/public" alt="Pendants">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/3.png" alt="Custom">
                 <div class="category-overlay">
-                    <h3 class="category-name">Pendants</h3>
-                    <a href="#" class="category-link">
+                    <h3 class="category-name">Custom</h3>
+                    <a href="customgrillz.html" class="category-link">
                         Shop Now
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -2093,11 +2097,11 @@
                 </div>
             </div>
             <div class="category-card reveal reveal-delay-4">
-                <img loading="lazy" src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7eb60943-c7bc-4730-990a-4316e6e8b100/public" alt="Watches">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/about/5.png" alt="About">
                 <div class="category-overlay">
-                    <h3 class="category-name">Watches</h3>
-                    <a href="#" class="category-link">
-                        Shop Now
+                    <h3 class="category-name">About</h3>
+                    <a href="about.html" class="category-link">
+                        Learn More
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -2106,31 +2110,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Mosaic Gallery -->
-    <div class="mosaic-gallery">
-        <div class="mosaic-item">
-            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/990e804e-b18f-437e-2d19-49bbeb437800/public" alt="ETR Jewellery">
-        </div>
-        <div class="mosaic-item">
-            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/3c1eab0a-5a23-4de2-1634-f2c3f3d79000/public" alt="ETR Jewellery">
-        </div>
-        <div class="mosaic-item">
-            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7ea408bd-3010-4e54-7b2c-c33a18547600/public" alt="ETR Jewellery">
-        </div>
-        <div class="mosaic-item">
-            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/7a2943c5-c1b9-4c34-2bc8-ae80db845e00/public" alt="ETR Jewellery">
-        </div>
-        <div class="mosaic-item">
-            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/cca0e8a3-f519-4bbe-c069-55a0b3981800/public" alt="ETR Chains">
-        </div>
-        <div class="mosaic-item">
-            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/bc0b0aac-f0e2-4d0d-4fbf-7945cbb62600/public" alt="ETR Jewellery">
-        </div>
-        <div class="mosaic-item">
-            <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/c9a684ec-3849-4c07-41f9-5aeebe58ef00/public" alt="ETR Grillz">
-        </div>
-    </div>
 
     <!-- Our Work Section -->
     <section class="portfolio">
