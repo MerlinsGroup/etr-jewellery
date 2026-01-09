@@ -137,6 +137,27 @@
             text-transform: uppercase;
         }
 
+        .loader-celebs {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .loader-celebs-label {
+            font-size: 10px;
+            color: var(--gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .loader-celebs-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            color: var(--silver-light);
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
         .loader-diamonds {
             display: flex;
             gap: 8px;
@@ -380,6 +401,138 @@
         .nav-icon:hover {
             stroke: var(--silver);
             filter: drop-shadow(0 0 5px rgba(192, 192, 192, 0.5));
+        }
+
+        .nav-search-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 120px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid var(--silver);
+            padding-bottom: 15px;
+        }
+
+        .search-input-wrapper svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--silver);
+            flex-shrink: 0;
+        }
+
+        .search-input {
+            flex: 1;
+            background: none;
+            border: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--white);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--gray);
+        }
+
+        .search-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .search-close svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--silver);
+            transition: stroke 0.3s;
+        }
+
+        .search-close:hover svg {
+            stroke: var(--white);
+        }
+
+        .search-results {
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-dark);
+            text-decoration: none;
+            color: var(--white);
+            transition: background 0.3s;
+        }
+
+        .search-result-item:hover {
+            background: rgba(255,255,255,0.05);
+            padding-left: 10px;
+        }
+
+        .search-result-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .search-result-info h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .search-result-info p {
+            font-size: 12px;
+            color: var(--gray-light);
+        }
+
+        .search-no-results {
+            color: var(--gray);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 14px;
         }
 
         .nav-menu {
@@ -1805,6 +1958,10 @@
             </div>
         </div>
         <p class="loader-text">ETR Jewellery</p>
+        <div class="loader-celebs">
+            <p class="loader-celebs-label">Worn By</p>
+            <p class="loader-celebs-names">SavNDO, Berna, Lil Sykes, Pak Man, TR Mulli & More</p>
+        </div>
         <div class="loader-diamonds">
             <div class="loader-diamond"></div>
             <div class="loader-diamond"></div>
@@ -1834,19 +1991,12 @@
                 <img src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/etr-jewellery/logo/preview.png" alt="ETR Jewellery">
             </a>
             <div class="nav-icons">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="M21 21l-4.35-4.35"/>
-                </svg>
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                </svg>
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                    <line x1="3" y1="6" x2="21" y2="6"/>
-                    <path d="M16 10a4 4 0 01-8 0"/>
-                </svg>
+                <button class="nav-search-btn" id="navSearchBtn" aria-label="Search">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                </button>
                 <div class="mobile-toggle" id="mobileToggle">
                     <span></span>
                     <span></span>
