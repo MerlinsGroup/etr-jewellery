@@ -446,6 +446,29 @@
             object-fit: cover;
         }
 
+        /* Mobile Hero Video Background */
+        .hero-mobile-video {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-mobile-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .hero-mobile-video {
+                display: block;
+            }
+            .hero-slideshow {
+                display: none;
+            }
+        }
+
         .hero-slideshow {
             position: absolute;
             inset: 0;
@@ -1163,6 +1186,115 @@
             grid-column: span 2;
         }
 
+        /* Portfolio Section */
+        .portfolio {
+            background: var(--black);
+            padding: 100px 50px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .portfolio-item img,
+        .portfolio-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img,
+        .portfolio-item:hover video {
+            transform: scale(1.08);
+        }
+
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.6) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover::after {
+            opacity: 1;
+        }
+
+        .portfolio-item.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .portfolio-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .portfolio-play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--white);
+            margin-left: 4px;
+        }
+
+        .portfolio-item:hover .portfolio-play-btn {
+            background: var(--silver);
+            border-color: var(--silver);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .portfolio-item:hover .portfolio-play-btn svg {
+            fill: var(--black);
+        }
+
+        @media (max-width: 992px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .portfolio-item.featured {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio {
+                padding: 80px 20px;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .portfolio-item.featured {
+                grid-column: span 1;
+            }
+        }
+
         /* Reviews Section */
         .reviews {
             background: var(--white-pure);
@@ -1716,6 +1848,13 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg" id="heroSlideshow">
+            <!-- Mobile Video Background -->
+            <div class="hero-mobile-video">
+                <video autoplay muted loop playsinline>
+                    <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/32eqwdqwd.mp4" type="video/mp4">
+                </video>
+            </div>
+            <!-- Desktop Slideshow -->
             <div class="hero-slideshow">
                 <div class="hero-slide active">
                     <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/990e804e-b18f-437e-2d19-49bbeb437800/public" alt="ETR Jewellery">
@@ -1992,6 +2131,67 @@
             <img src="https://imagedelivery.net/CNmwbT2atVIyaWo4we-vfg/c9a684ec-3849-4c07-41f9-5aeebe58ef00/public" alt="ETR Grillz">
         </div>
     </div>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Our Work</p>
+            <h2 class="section-title">Portfolio</h2>
+        </div>
+        <div class="portfolio-grid">
+            <!-- Featured Video -->
+            <div class="portfolio-item featured reveal reveal-delay-1">
+                <video autoplay muted loop playsinline>
+                    <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Video-2026-01-08-at-13-22-44.mp4" type="video/mp4">
+                </video>
+                <div class="portfolio-play-btn">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+            </div>
+            <!-- Image -->
+            <div class="portfolio-item reveal reveal-delay-2">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/eqweqe.jpeg" alt="ETR Jewellery">
+            </div>
+            <!-- Image -->
+            <div class="portfolio-item reveal reveal-delay-3">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/232312.jpeg" alt="ETR Jewellery">
+            </div>
+            <!-- Video -->
+            <div class="portfolio-item reveal reveal-delay-4">
+                <video autoplay muted loop playsinline>
+                    <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Video-2026-01-08-at-13-22-441.mp4" type="video/mp4">
+                </video>
+                <div class="portfolio-play-btn">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+            </div>
+            <!-- Image -->
+            <div class="portfolio-item reveal reveal-delay-1">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/2322.jpeg" alt="ETR Jewellery">
+            </div>
+            <!-- Image -->
+            <div class="portfolio-item reveal reveal-delay-2">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-457777777777.jpeg" alt="ETR Jewellery">
+            </div>
+            <!-- Video -->
+            <div class="portfolio-item reveal reveal-delay-3">
+                <video autoplay muted loop playsinline>
+                    <source src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Video-2026-01-08-at-13-22-455555555.mp4" type="video/mp4">
+                </video>
+                <div class="portfolio-play-btn">
+                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+            </div>
+            <!-- Image -->
+            <div class="portfolio-item reveal reveal-delay-4">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-4411111111111.jpeg" alt="ETR Jewellery">
+            </div>
+            <!-- Image -->
+            <div class="portfolio-item reveal reveal-delay-1">
+                <img loading="lazy" src="https://pub-7713e6b0ef0f4cd494d9e7933a0f667b.r2.dev/santokh/home/WhatsApp-Image-2026-01-08-at-13-22-4411.jpeg" alt="ETR Jewellery">
+            </div>
+        </div>
+    </section>
 
     <!-- Featured Video -->
     <section class="featured-video">
