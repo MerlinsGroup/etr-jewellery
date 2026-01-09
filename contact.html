@@ -1002,10 +1002,47 @@
 
         // Form submission
         const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', (e) => {
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT5li5eEI_5TBGq0o3n1SJTvWWNE_sv6MpQ4ou-5c80y5MMGr0a4T_V8H_06QKJYvA/exec';
+
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
+
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            const formData = {
+                formType: 'contact',
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Show success message
+                alert('Thank you for your message! We will get back to you within 24 hours.');
+                contactForm.reset();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error sending your message. Please try again or contact us directly via WhatsApp.');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>

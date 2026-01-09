@@ -1120,31 +1120,59 @@
         });
 
         // Form submission
-        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxT5li5eEI_5TBGq0o3n1SJTvWWNE_sv6MpQ4ou-5c80y5MMGr0a4T_V8H_06QKJYvA/exec';
+
+        document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            // Format the date nicely
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = selectedDate.toLocaleDateString('en-GB', options);
+
             const formData = {
+                formType: 'booking',
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
                 jewelleryType: document.getElementById('jewelleryType').value,
                 notes: document.getElementById('notes').value,
-                date: selectedDate.toISOString(),
-                time: selectedTime
+                appointmentDate: formattedDate,
+                appointmentTime: selectedTime
             };
 
-            // Here you would typically send this to your backend
-            console.log('Booking submitted:', formData);
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
 
-            alert('Thank you! Your appointment request has been submitted. We will contact you shortly to confirm.');
+                // Show success message
+                alert('Thank you! Your appointment request has been submitted. We will contact you within 24 hours to confirm.');
 
-            // Reset form
-            this.reset();
-            selectedDate = null;
-            selectedTime = null;
-            timeSlotsEl.style.display = 'none';
-            bookingForm.classList.remove('active');
-            renderCalendar();
+                // Reset form
+                this.reset();
+                selectedDate = null;
+                selectedTime = null;
+                timeSlotsEl.style.display = 'none';
+                bookingForm.classList.remove('active');
+                renderCalendar();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your booking. Please try again or contact us directly via WhatsApp.');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
 
         // Initialize calendar
